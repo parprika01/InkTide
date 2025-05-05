@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cc91820d1c09fb141b0763815e1b91cc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
+  - slopeEvent: {fileID: 11400000, guid: bf0f7d5756fdbaa43a83f2487b2a42d2, type: 2}
+  - capcol: {instanceID: 0}
+  - rb: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
