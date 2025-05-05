@@ -33,7 +33,6 @@ public class GroundEventPublisher : MonoBehaviour
         isOnGround = onGround();
         if(isOnGround != previousIsOnGround)
         {
-            Debug.Log("groudEvent: " + isOnGround);
             groundEvent.Raise(isOnGround);
             previousIsOnGround = isOnGround;
         }

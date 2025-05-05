@@ -130,19 +130,6 @@ public class AnimSystem : MonoBehaviour
     #region Event Handler
     private void HandleMove(Vector2 moveInput)
     {
-        /*
-        float targetSpeed = moveInput.magnitude;
-        float targetXSpeed = moveInput.x;
-        float targetYSpeed = moveInput.y;
-
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 0.5f);
-        currentXSpeed = Mathf.Lerp(currentXSpeed, targetXSpeed, 0.5f);
-        currentYSpeed = Mathf.Lerp(currentYSpeed, targetYSpeed, 0.5f);
-
-        animator.SetFloat(speed_code, currentSpeed);
-        animator.SetFloat(x_speed_code, currentXSpeed);
-        animator.SetFloat(y_speed_code, currentYSpeed);
-        */ 
         lastMoveInput = moveInput;       
     }
     private void HandleFire(bool fire)
@@ -191,7 +178,6 @@ public class AnimSystem : MonoBehaviour
     }
 
     #endregion
-
     private void ProcessMovementSmoothing()
 {
     // 计算目标值
@@ -219,7 +205,6 @@ public class AnimSystem : MonoBehaviour
     animator.SetFloat(x_speed_code, currentXSpeed);
     animator.SetFloat(y_speed_code, currentYSpeed);
 }
-
     void Update()
     {
         ProcessMovementSmoothing();
