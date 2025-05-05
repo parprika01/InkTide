@@ -1333,6 +1333,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2376458716859056829, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: jumpSpeed
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3150993049236355212, guid: 35c09bdb989f04549ab209ece4b8d92d,
         type: 3}
       propertyPath: m_Controller
@@ -1392,6 +1397,38 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4475625429237933009, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: specialEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be,
+        type: 2}
+    - target: {fileID: 7135470271246485048, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: specialEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be,
+        type: 2}
+    - target: {fileID: 8316268819167123450, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: m_Height
+      value: 1.583761
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316268819167123450, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.3235084
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316268819167123450, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.8033345
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316268819167123450, guid: 35c09bdb989f04549ab209ece4b8d92d,
+        type: 3}
+      propertyPath: m_Center.z
+      value: 0.1764916
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

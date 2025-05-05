@@ -68,6 +68,7 @@ public class MoveSystem : MonoBehaviour
 
     private void HandleGround(bool ground)
     {
+        Debug.Log("ground");
         isOnGround = ground;
     }
 
