@@ -5,24 +5,27 @@ using UnityEngine;
 public class AnimSystem : MonoBehaviour
 {
     public Animator animator;
-    public VariableManager variableManager;    
+    public VariableManager variableManager;
+    [SerializeField] private float acceleration = 8f;  // 加速系数
+    [SerializeField] private float deceleration = 12f; // 减速系数   
+
     #region animations
-    public int fire_bool_code;
-    public int fire_trigger_code;
-    public int jump_code;
-    public int damage_code;
-    public int hit_code;
-    public int speed_code;
-    public int x_speed_code;
-    public int y_speed_code;
-    public int z_speed_code;
-    public int come_on_code;
-    public int nice_code;
-    public int hold_code;
-    public int throw_code;
-    public int squid_code;
-    public int ground_code;
-    public int special_code;
+    private int fire_bool_code;
+    private int fire_trigger_code;
+    private int jump_code;
+    private int damage_code;
+    private int hit_code;
+    private int speed_code;
+    private int x_speed_code;
+    private int y_speed_code;
+    private int z_speed_code;
+    private int come_on_code;
+    private int nice_code;
+    private int hold_code;
+    private int throw_code;
+    private int squid_code;
+    private int ground_code;
+    private int special_code;
     #endregion
     #region variables
     public Variable fire_bool;
@@ -45,9 +48,12 @@ public class AnimSystem : MonoBehaviour
     [SerializeField] private EventChannel<bool> squidEvent;
     [SerializeField] private EventChannel<bool> specialEvent;
     #endregion
-
     private Rigidbody rb;
     private bool isOnGround;
+    private float currentSpeed;
+    private float currentXSpeed;
+    private float currentYSpeed;
+    private Vector2 lastMoveInput;
 
     void Awake()
     {
@@ -124,10 +130,20 @@ public class AnimSystem : MonoBehaviour
     #region Event Handler
     private void HandleMove(Vector2 moveInput)
     {
-        float speed = Mathf.Sqrt(moveInput.x*moveInput.x + moveInput.y*moveInput.y);
-        animator.SetFloat(speed_code, speed);
-        animator.SetFloat(x_speed_code, moveInput.x);
-        animator.SetFloat(y_speed_code, moveInput.y);        
+        /*
+        float targetSpeed = moveInput.magnitude;
+        float targetXSpeed = moveInput.x;
+        float targetYSpeed = moveInput.y;
+
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, 0.5f);
+        currentXSpeed = Mathf.Lerp(currentXSpeed, targetXSpeed, 0.5f);
+        currentYSpeed = Mathf.Lerp(currentYSpeed, targetYSpeed, 0.5f);
+
+        animator.SetFloat(speed_code, currentSpeed);
+        animator.SetFloat(x_speed_code, currentXSpeed);
+        animator.SetFloat(y_speed_code, currentYSpeed);
+        */ 
+        lastMoveInput = moveInput;       
     }
     private void HandleFire(bool fire)
     {
@@ -173,11 +189,40 @@ public class AnimSystem : MonoBehaviour
     {
         animator.SetBool(special_code, special);
     }
-    
+
     #endregion
+
+    private void ProcessMovementSmoothing()
+{
+    // 计算目标值
+    float targetSpeed = lastMoveInput.magnitude;
+    float targetXSpeed = lastMoveInput.x;
+    float targetYSpeed = lastMoveInput.y;
+
+    // 根据是否有输入选择平滑系数
+    float smoothFactor = (targetSpeed > 0.01f) ? 
+        acceleration * Time.deltaTime : 
+        deceleration * Time.deltaTime;
+
+    // 平滑过渡
+    currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, smoothFactor);
+    currentXSpeed = Mathf.Lerp(currentXSpeed, targetXSpeed, smoothFactor);
+    currentYSpeed = Mathf.Lerp(currentYSpeed, targetYSpeed, smoothFactor);
+
+    // 当接近零时强制归零
+    if (currentSpeed < 0.01f) currentSpeed = 0f;
+    if (Mathf.Abs(currentXSpeed) < 0.01f) currentXSpeed = 0f;
+    if (Mathf.Abs(currentYSpeed) < 0.01f) currentYSpeed = 0f;
+
+    // 更新Animator
+    animator.SetFloat(speed_code, currentSpeed);
+    animator.SetFloat(x_speed_code, currentXSpeed);
+    animator.SetFloat(y_speed_code, currentYSpeed);
+}
 
     void Update()
     {
+        ProcessMovementSmoothing();
         if(!isOnGround){
             animator.SetFloat(z_speed_code, rb.velocity.z);
         }
