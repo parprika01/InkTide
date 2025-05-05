@@ -16,6 +16,7 @@ public class InputEventPublisher : MonoBehaviour
     [SerializeField] private EventChannel throwEvent;
     [SerializeField] private EventChannel jumpEvent;
     [SerializeField] private EventChannel<bool> squidEvent;
+    [SerializeField] private EventChannel<bool> specialEvent;
     #endregion
     private PlayerInput playerInput;
     private Vector2 _currentMoveInput;
@@ -42,6 +43,9 @@ public class InputEventPublisher : MonoBehaviour
 
         playerInput.player.squid.started += _ => squidEvent.Raise(true);
         playerInput.player.squid.canceled += _ => squidEvent.Raise(false);
+        
+        playerInput.player.special.started += _ => specialEvent.Raise(true);
+        playerInput.player.special.canceled += _ => specialEvent.Raise(false);
     }
 
     void OnEnable()

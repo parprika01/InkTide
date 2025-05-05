@@ -116,6 +116,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""special"",
+                    ""type"": ""Button"",
+                    ""id"": ""e6852312-e3d5-482a-a567-ca9f90e3a1f8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -272,6 +281,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""squid"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c1a28d72-47e9-4af4-ab8f-a8c3a9af7f84"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""special"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -318,6 +338,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_player_fire = m_player.FindAction("fire", throwIfNotFound: true);
         m_player_jump = m_player.FindAction("jump", throwIfNotFound: true);
         m_player_squid = m_player.FindAction("squid", throwIfNotFound: true);
+        m_player_special = m_player.FindAction("special", throwIfNotFound: true);
         // setting
         m_setting = asset.FindActionMap("setting", throwIfNotFound: true);
         m_setting_Newaction = m_setting.FindAction("New action", throwIfNotFound: true);
@@ -392,6 +413,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_player_fire;
     private readonly InputAction m_player_jump;
     private readonly InputAction m_player_squid;
+    private readonly InputAction m_player_special;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -406,6 +428,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public InputAction @fire => m_Wrapper.m_player_fire;
         public InputAction @jump => m_Wrapper.m_player_jump;
         public InputAction @squid => m_Wrapper.m_player_squid;
+        public InputAction @special => m_Wrapper.m_player_special;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -445,6 +468,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @squid.started += instance.OnSquid;
             @squid.performed += instance.OnSquid;
             @squid.canceled += instance.OnSquid;
+            @special.started += instance.OnSpecial;
+            @special.performed += instance.OnSpecial;
+            @special.canceled += instance.OnSpecial;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -479,6 +505,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @squid.started -= instance.OnSquid;
             @squid.performed -= instance.OnSquid;
             @squid.canceled -= instance.OnSquid;
+            @special.started -= instance.OnSpecial;
+            @special.performed -= instance.OnSpecial;
+            @special.canceled -= instance.OnSpecial;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -554,6 +583,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnSquid(InputAction.CallbackContext context);
+        void OnSpecial(InputAction.CallbackContext context);
     }
     public interface ISettingActions
     {

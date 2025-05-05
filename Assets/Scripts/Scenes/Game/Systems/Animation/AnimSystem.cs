@@ -22,6 +22,7 @@ public class AnimSystem : MonoBehaviour
     public int throw_code;
     public int squid_code;
     public int ground_code;
+    public int special_code;
     #endregion
     #region variables
     public Variable fire_bool;
@@ -42,6 +43,7 @@ public class AnimSystem : MonoBehaviour
     [SerializeField] private EventChannel jumpEvent;
     [SerializeField] private EventChannel<bool> groundEvent;
     [SerializeField] private EventChannel<bool> squidEvent;
+    [SerializeField] private EventChannel<bool> specialEvent;
     #endregion
 
     private Rigidbody rb;
@@ -69,6 +71,7 @@ public class AnimSystem : MonoBehaviour
         throw_code = Animator.StringToHash("throw");
         squid_code = Animator.StringToHash("squid");
         ground_code = Animator.StringToHash("ground");
+        special_code = Animator.StringToHash("special");
         #endregion
 
         #region variable initialize
@@ -102,6 +105,7 @@ public class AnimSystem : MonoBehaviour
         throwEvent.OnEventRaised += HandleThrow;
         jumpEvent.OnEventRaised += HandleJump;
         groundEvent.OnEventRaised += HandleGround;
+        specialEvent.OnEventRaised += HandleSpecial;
     }
     void OnDisable()
     {
@@ -114,6 +118,7 @@ public class AnimSystem : MonoBehaviour
         throwEvent.OnEventRaised -= HandleThrow;
         jumpEvent.OnEventRaised -= HandleJump;
         groundEvent.OnEventRaised -= HandleGround;
+        specialEvent.OnEventRaised -= HandleSpecial;
     }
 
     #region Event Handler
@@ -126,7 +131,6 @@ public class AnimSystem : MonoBehaviour
     }
     private void HandleFire(bool fire)
     {
-        animator.SetBool("fire_bool", fire);
         if (fire)
             variableManager.ActivateVar(fire_bool);
         else    
@@ -164,6 +168,12 @@ public class AnimSystem : MonoBehaviour
     {
         animator.SetTrigger(jump_code);
     }
+
+    private void HandleSpecial(bool special)
+    {
+        animator.SetBool(special_code, special);
+    }
+    
     #endregion
 
     void Update()
