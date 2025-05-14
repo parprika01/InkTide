@@ -1,11 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
+using JetBrains.Annotations;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using UnityEditor;
 
 public class AnimSystem : MonoBehaviour
 {
     public Animator animator;
     public VariableManager variableManager;
+    public string systemName = "animation";
     [SerializeField] private float acceleration = 8f;  // 加速系数
     [SerializeField] private float deceleration = 12f; // 减速系数   
 
@@ -36,24 +44,34 @@ public class AnimSystem : MonoBehaviour
     public Variable to_throw;
     #endregion        
     #region animation event
-    [SerializeField] private EventChannel<Vector2> moveEvent;
-    [SerializeField] private EventChannel<bool> fireEvent;
-    [SerializeField] private EventChannel fireTriggerEvent;
-    [SerializeField] private EventChannel niceEvent;
-    [SerializeField] private EventChannel comeOnEvent;
-    [SerializeField] private EventChannel<bool> holdEvent;
-    [SerializeField] private EventChannel throwEvent;
-    [SerializeField] private EventChannel jumpEvent;
-    [SerializeField] private EventChannel<bool> groundEvent;
-    [SerializeField] private EventChannel<bool> squidEvent;
-    [SerializeField] private EventChannel<bool> specialEvent;
+    // 同步事件
+    [SerializeField] private Vector2EventChannel moveEvent;
+    [SerializeField] private BoolEventChannel groundEvent;
+    [SerializeField] private EventChannel jumpEvent;   
+    // 异步事件
+    [SerializeField] private AsyncEventChannel<bool> fireEvent;
+    [SerializeField] private AsyncEventChannel fireTriggerEvent;
+    [SerializeField] private AsyncEventChannel niceEvent;
+    [SerializeField] private AsyncEventChannel comeOnEvent;
+    [SerializeField] private AsyncEventChannel<bool> holdEvent;
+
+    [SerializeField] private AsyncEventChannel<bool> squidEvent;
+    [SerializeField] private AsyncEventChannel<bool> specialEvent;
+
     #endregion
+    
     private Rigidbody rb;
     private bool isOnGround;
     private float currentSpeed;
     private float currentXSpeed;
     private float currentYSpeed;
     private Vector2 lastMoveInput;
+    private Dictionary<InputType, string> stateDict = new Dictionary<InputType, string>();
+    private Dictionary<InputType, Variable> varDict = new Dictionary<InputType, Variable>();
+    private CancellationTokenSource cts = new CancellationTokenSource();
+    private Dictionary<InputType, UniTaskCompletionSource> tcsDict = new Dictionary<InputType, UniTaskCompletionSource>();    
+    private Dictionary<InputType, AsyncEventChannel> triggerEventDict = new Dictionary<InputType, AsyncEventChannel>();
+    private Dictionary<InputType, AsyncEventChannel<bool>> boolEventDict = new Dictionary<InputType, AsyncEventChannel<bool>>();
 
     void Awake()
     {
@@ -79,30 +97,44 @@ public class AnimSystem : MonoBehaviour
         ground_code = Animator.StringToHash("ground");
         special_code = Animator.StringToHash("special");
         #endregion
-
         #region variable initialize
-        fire_bool = new Variable(2, false, fire_bool_code, false);
-        variableManager.AddVariable(fire_bool);
+        varDict[InputType.Fire] = new Variable(2, false, fire_bool_code, false);
+        variableManager.AddVariable(varDict[InputType.Fire]);
 
-        fire_trigger = new Variable(2, true, fire_trigger_code, false);
-        variableManager.AddVariable(fire_trigger);
+        varDict[InputType.FireTrigger] = new Variable(2, true, fire_trigger_code, false);
+        variableManager.AddVariable(varDict[InputType.FireTrigger]);
 
-        come_on = new Variable(3, true, come_on_code);
-        variableManager.AddVariable(come_on);
+        varDict[InputType.Nice] = new Variable(3, true, nice_code);
+        variableManager.AddVariable(varDict[InputType.Nice]); 
 
-        nice = new Variable(3, true, nice_code);
-        variableManager.AddVariable(nice);
+        varDict[InputType.ComeOn] = new Variable(3, true, come_on_code);
+        variableManager.AddVariable(varDict[InputType.ComeOn]);
 
-        hold = new Variable(2, false, hold_code);
-        variableManager.AddVariable(hold);
+        varDict[InputType.Hold] = new Variable(2, false, hold_code);
+        variableManager.AddVariable(varDict[InputType.Hold]);
+        #endregion
+        #region async event initialize
+        boolEventDict[InputType.Fire] = fireEvent;
+        boolEventDict[InputType.Hold] = holdEvent;
+        boolEventDict[InputType.Squid] = squidEvent;
+        boolEventDict[InputType.Special] = specialEvent;
 
-        to_throw = new Variable(2, true, throw_code);
-        variableManager.AddVariable(to_throw);
-        #endregion        
+        triggerEventDict[InputType.FireTrigger] = fireTriggerEvent;
+        triggerEventDict[InputType.Nice] = niceEvent;
+        triggerEventDict[InputType.ComeOn] = comeOnEvent;
+        #endregion
+        #region animation state initialize
+        stateDict[InputType.FireTrigger] = "Attack";
+        stateDict[InputType.Nice] = "Nice";
+        stateDict[InputType.ComeOn] = "ComeOn";
+        //stateDict[InputType.Throw] = ""
+        #endregion
+
     }
     void OnEnable()
     {
-        moveEvent.OnEventRaised += HandleMove;
+        /*
+        
         fireEvent.OnEventRaised += HandleFire;
         fireTriggerEvent.OnEventRaised += HandleFireTrigger;
         niceEvent.OnEventRaised += HandleNice;
@@ -110,21 +142,42 @@ public class AnimSystem : MonoBehaviour
         holdEvent.OnEventRaised += HandleHold;
         throwEvent.OnEventRaised += HandleThrow;
         jumpEvent.OnEventRaised += HandleJump;
+        
+        specialEvent.OnEventRaised += HandleSpecial;     
+        fireTriggerAsyncEvent.OnEventRaised += HandleFireTriggerTest;
+        //fireTriggerAsyncEvent.OnEventCancled += ctsCollection["fire_trigger"].Cancel;
+        */
+        // 同步事件
+        moveEvent.OnEventRaised += HandleMove;
         groundEvent.OnEventRaised += HandleGround;
-        specialEvent.OnEventRaised += HandleSpecial;
+        jumpEvent.OnEventRaised += HandleJump;
+        
+        // 异步事件
+        foreach(var pair in boolEventDict){
+            pair.Value.OnEventRaised += ctsClear;
+            pair.Value.OnEventRaised += HandleBoolEvent;
+        }
+
+        foreach(var pair in triggerEventDict){
+            pair.Value.OnEventRaised += ctsClear;
+            pair.Value.OnEventRaised += HandleTriggerEvent;
+        }
     }
     void OnDisable()
     {
+        // 同步事件
         moveEvent.OnEventRaised -= HandleMove;
-        fireEvent.OnEventRaised -= HandleFire;
-        fireTriggerEvent.OnEventRaised -= HandleFireTrigger;
-        niceEvent.OnEventRaised -= HandleNice;
-        comeOnEvent.OnEventRaised -= HandleComeOn;
-        holdEvent.OnEventRaised -= HandleHold;
-        throwEvent.OnEventRaised -= HandleThrow;
-        jumpEvent.OnEventRaised -= HandleJump;
         groundEvent.OnEventRaised -= HandleGround;
-        specialEvent.OnEventRaised -= HandleSpecial;
+        // 异步事件
+        foreach(var pair in boolEventDict){
+            pair.Value.OnEventRaised -= ctsClear;
+            pair.Value.OnEventRaised -= HandleBoolEvent;
+        }
+
+        foreach(var pair in triggerEventDict){
+            pair.Value.OnEventRaised -= ctsClear;
+            pair.Value.OnEventRaised -= HandleTriggerEvent;
+        }        
     }
 
     #region Event Handler
@@ -132,79 +185,100 @@ public class AnimSystem : MonoBehaviour
     {
         lastMoveInput = moveInput;       
     }
-    private void HandleFire(bool fire)
-    {
-        if (fire)
-            variableManager.ActivateVar(fire_bool);
-        else    
-            variableManager.DeactivateVar(fire_bool);    
-    }
-    private void HandleFireTrigger()
-    {
-        variableManager.ActivateVar(fire_trigger);
-    }
-    private void HandleNice()
-    {
-        variableManager.ActivateVar(nice);
-    }
-    private void HandleComeOn()
-    {
-        variableManager.ActivateVar(come_on);
-    }
-    private void HandleHold(bool isHold)
-    {
-        if (isHold)
-            variableManager.ActivateVar(hold);
-        else    
-            variableManager.DeactivateVar(hold);
-    }
-    private void HandleThrow()
-    {
-        variableManager.ActivateVar(to_throw);
-    }
     private void HandleGround(bool ground)
     {
         isOnGround = ground;
         animator.SetBool(ground_code, ground);
-    }
-    private void HandleJump()
-    {
+    }  
+
+    private void HandleJump(){
         animator.SetTrigger(jump_code);
     }
 
-    private void HandleSpecial(bool special)
+    private async void HandleBoolEvent(InputType name, bool value){
+        
+        if (value) {
+            // 变量激活
+            variableManager.ActivateVar(varDict[name]);
+            // 异步等待bool变为false
+            tcsDict[name] = new UniTaskCompletionSource();
+            try{
+                await tcsDict[name].Task.AttachExternalCancellation(cts.Token);
+                //boolEventDict[name].Ready(systemName);  
+            } catch (OperationCanceledException) {
+            } finally {
+                // 通知事件通道动画系统已处理完成
+            }
+        } else {
+            variableManager.DeactivateVar(varDict[name]);
+            tcsDict[name].TrySetResult();
+            await UniTask.Delay(100);
+            boolEventDict[name].Ready(systemName);
+        }
+    }
+
+    private async void HandleTriggerEvent(InputType name)
     {
-        animator.SetBool(special_code, special);
+        try {
+            // 变量激活
+            variableManager.ActivateVar(varDict[name]);
+            // 异步等待动画播放完毕
+            await UniTask.WaitUntil(() =>
+                animator.GetCurrentAnimatorStateInfo(1).IsName(stateDict[name]) &&
+                animator.GetCurrentAnimatorStateInfo(1).normalizedTime >= 0.99f &&
+                !animator.IsInTransition(1),
+                cancellationToken: cts.Token
+            );   
+
+            //Debug.Log("动画播放完成：" + name);
+        } catch(OperationCanceledException) {
+        } finally {
+            // 通知事件通道动画系统已处理完成
+            triggerEventDict[name].Ready(systemName);
+        }
+        
+    }   
+    private void ctsClear(InputType name, bool value)
+    {
+        cts.Cancel();
+        cts.Dispose();
+        cts = new CancellationTokenSource();
+    }    
+    private void ctsClear(InputType name)
+    {
+        cts.Cancel();
+        cts.Dispose();
+        cts = new CancellationTokenSource();
     }
 
     #endregion
     private void ProcessMovementSmoothing()
-{
-    // 计算目标值
-    float targetSpeed = lastMoveInput.magnitude;
-    float targetXSpeed = lastMoveInput.x;
-    float targetYSpeed = lastMoveInput.y;
+    {
+        // 计算目标值
+        float targetSpeed = lastMoveInput.magnitude;
+        float targetXSpeed = lastMoveInput.x;
+        float targetYSpeed = lastMoveInput.y;
 
-    // 根据是否有输入选择平滑系数
-    float smoothFactor = (targetSpeed > 0.01f) ? 
-        acceleration * Time.deltaTime : 
-        deceleration * Time.deltaTime;
+        // 根据是否有输入选择平滑系数
+        float smoothFactor = (targetSpeed > 0.01f) ? 
+            acceleration * Time.deltaTime : 
+            deceleration * Time.deltaTime;
 
-    // 平滑过渡
-    currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, smoothFactor);
-    currentXSpeed = Mathf.Lerp(currentXSpeed, targetXSpeed, smoothFactor);
-    currentYSpeed = Mathf.Lerp(currentYSpeed, targetYSpeed, smoothFactor);
+        // 平滑过渡
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, smoothFactor);
+        currentXSpeed = Mathf.Lerp(currentXSpeed, targetXSpeed, smoothFactor);
+        currentYSpeed = Mathf.Lerp(currentYSpeed, targetYSpeed, smoothFactor);
 
-    // 当接近零时强制归零
-    if (currentSpeed < 0.01f) currentSpeed = 0f;
-    if (Mathf.Abs(currentXSpeed) < 0.01f) currentXSpeed = 0f;
-    if (Mathf.Abs(currentYSpeed) < 0.01f) currentYSpeed = 0f;
+        // 当接近零时强制归零
+        if (currentSpeed < 0.01f) currentSpeed = 0f;
+        if (Mathf.Abs(currentXSpeed) < 0.01f) currentXSpeed = 0f;
+        if (Mathf.Abs(currentYSpeed) < 0.01f) currentYSpeed = 0f;
 
-    // 更新Animator
-    animator.SetFloat(speed_code, currentSpeed);
-    animator.SetFloat(x_speed_code, currentXSpeed);
-    animator.SetFloat(y_speed_code, currentYSpeed);
-}
+        // 更新Animator
+        animator.SetFloat(speed_code, currentSpeed);
+        animator.SetFloat(x_speed_code, currentXSpeed);
+        animator.SetFloat(y_speed_code, currentYSpeed);
+    }
     void Update()
     {
         ProcessMovementSmoothing();
@@ -212,4 +286,5 @@ public class AnimSystem : MonoBehaviour
             animator.SetFloat(z_speed_code, rb.velocity.z);
         }
     }
+
 }

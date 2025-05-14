@@ -7,45 +7,52 @@ public class InputEventPublisher : MonoBehaviour
 {
     #region 事件通道
     [Header("事件通道")]
-    [SerializeField] private EventChannel<Vector2> moveEvent;
-    [SerializeField] private EventChannel<bool> fireEvent;
-    [SerializeField] private EventChannel fireTriggerEvent;
-    [SerializeField] private EventChannel niceEvent;
-    [SerializeField] private EventChannel comeOnEvent;
-    [SerializeField] private EventChannel<bool> holdEvent;
-    [SerializeField] private EventChannel throwEvent;
-    [SerializeField] private EventChannel jumpEvent;
-    [SerializeField] private EventChannel<bool> squidEvent;
-    [SerializeField] private EventChannel<bool> specialEvent;
+    [SerializeField] private BoolEventChannel SyncFireEvent;
+    [SerializeField] private EventChannel SyncJumpEvent;
+    [SerializeField] private Vector2EventChannel moveEvent;
+    [SerializeField] private AsyncBoolEventChannel fireEvent;
+    [SerializeField] private AsyncEventChannel fireTriggerEvent;
+    [SerializeField] private AsyncEventChannel niceEvent;
+    [SerializeField] private AsyncEventChannel comeOnEvent;
+    [SerializeField] private AsyncBoolEventChannel holdEvent;
+    [SerializeField] private AsyncEventChannel jumpEvent;
+    [SerializeField] private AsyncBoolEventChannel squidEvent;
+    [SerializeField] private AsyncBoolEventChannel specialEvent;
+    
+
     #endregion
     private PlayerInput playerInput;
     private Vector2 _currentMoveInput;
-    
+    private SignalManager signalManager;
+   
 
     void Awake()
     {
-        playerInput = new PlayerInput();        
+        playerInput = new PlayerInput(); 
+        signalManager = new SignalManager();
         playerInput.player.move.performed += OnMovePerformed;
         playerInput.player.move.canceled += OnMoveCanceled;
         
-        playerInput.player.fire.started += _ => fireEvent.Raise(true);
-        playerInput.player.fire.canceled += _ => fireEvent.Raise(false);
-        playerInput.player.fire.started += _ => fireTriggerEvent.Raise();
+        playerInput.player.fire.started += _ => BoolSignalRaise(InputType.Fire, fireEvent, true);
+        playerInput.player.fire.canceled += _ => BoolSignalRaise(InputType.Fire, fireEvent, false);
+        playerInput.player.fire.started += _ => SyncFireEvent.Raise(true);
+        playerInput.player.fire.canceled += _ => SyncFireEvent.Raise(false);
+        //playerInput.player.fire.started += _ => TriggerSignalRaise(InputType.FireTrigger, fireTriggerEvent);
 
-        playerInput.player.nice.started += _ => niceEvent.Raise();
-        playerInput.player.come_on.started += _ => comeOnEvent.Raise();
+        playerInput.player.nice.started += _ => TriggerSignalRaise(InputType.Nice, niceEvent);
+        playerInput.player.come_on.started += _ => TriggerSignalRaise(InputType.ComeOn, comeOnEvent);
 
-        playerInput.player.sub_weapon.started += _ => holdEvent.Raise(true);
-        playerInput.player.sub_weapon.canceled += _ => holdEvent.Raise(false);        
-        playerInput.player.sub_weapon.canceled += _ => throwEvent.Raise();
+        playerInput.player.sub_weapon.started += _ => BoolSignalRaise(InputType.Hold, holdEvent, true);
+        playerInput.player.sub_weapon.canceled += _ => BoolSignalRaise(InputType.Hold, holdEvent, false);      
 
-        playerInput.player.jump.started += _ => jumpEvent.Raise();
+        playerInput.player.jump.started += _ => TriggerSignalRaise(InputType.Jump, jumpEvent);
+        playerInput.player.jump.started += _ => SyncJumpEvent.Raise();
 
-        playerInput.player.squid.started += _ => squidEvent.Raise(true);
-        playerInput.player.squid.canceled += _ => squidEvent.Raise(false);
+        playerInput.player.squid.started += _ => BoolSignalRaise(InputType.Squid, squidEvent, true);
+        playerInput.player.squid.canceled += _ => BoolSignalRaise(InputType.Squid, squidEvent, false);
         
-        playerInput.player.special.started += _ => specialEvent.Raise(true);
-        playerInput.player.special.canceled += _ => specialEvent.Raise(false);
+        playerInput.player.special.started += _ => BoolSignalRaise(InputType.Special, specialEvent, true);
+        playerInput.player.special.canceled += _ => BoolSignalRaise(InputType.Special, specialEvent, false);
     }
 
     void OnEnable()
@@ -76,6 +83,17 @@ public class InputEventPublisher : MonoBehaviour
         {
             moveEvent.Raise(_currentMoveInput);
         }
-    }     
+    }
+
+
+    private void TriggerSignalRaise(InputType inputType, AsyncEventChannel eventChannel){
+        TriggerSignal signal = new TriggerSignal(eventChannel,inputType);
+        signalManager.Add(signal);
+    }
+
+    private void BoolSignalRaise(InputType inputType, AsyncBoolEventChannel eventChannel, bool value){
+        BoolSignal signal = new BoolSignal(eventChannel,inputType, value);
+        signalManager.Add(signal);
+    }
 }
 

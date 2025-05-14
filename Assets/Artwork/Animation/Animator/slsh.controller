@@ -271,7 +271,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Come On
+  m_Name: ComeOn
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -363,7 +363,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
@@ -478,7 +478,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sub Hold
+  m_Name: SubHold
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -506,7 +506,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sub Throw
+  m_Name: SubThrow
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -725,8 +725,8 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: throw
+  - m_ConditionMode: 2
+    m_ConditionEvent: hold
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4317940812952214231}

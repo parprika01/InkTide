@@ -16,6 +16,8 @@ MonoImporter:
   - groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
   - squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
   - specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
+  - fireTriggerAsyncEvent: {fileID: 11400000, guid: 002c9503a5cf6804cbe0851b9b9513c4,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -10,11 +10,11 @@ public class MoveSystem : MonoBehaviour
     [SerializeField] private float turnSpeed = 10f;
 
     [Header("事件")]
-    [SerializeField] private EventChannel<Vector2> moveEvent;
-    [SerializeField] private EventChannel<bool> fireEvent;
+    [SerializeField] private Vector2EventChannel moveEvent;
+    [SerializeField] private BoolEventChannel fireEvent;
     [SerializeField] private EventChannel jumpEvent;
-    [SerializeField] private EventChannel<bool> groundEvent;
-    [SerializeField] private EventChannel<bool> slopeEvent;
+    [SerializeField] private BoolEventChannel groundEvent;
+    [SerializeField] private BoolEventChannel slopeEvent;
 
     private Camera cam;
     private Rigidbody rb;
@@ -68,7 +68,6 @@ public class MoveSystem : MonoBehaviour
 
     private void HandleGround(bool ground)
     {
-        Debug.Log("ground");
         isOnGround = ground;
     }
 
@@ -79,7 +78,7 @@ public class MoveSystem : MonoBehaviour
     #endregion
 
     private void UpdateTargetDirection(Vector2 moveInput)
-    {
+    {  
         var forward = cam.transform.forward;
         forward.y = 0;
         var right = cam.transform.right;
@@ -98,13 +97,12 @@ public class MoveSystem : MonoBehaviour
             freeRotation = Quaternion.LookRotation(cam.transform.forward, transform.up);
         var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
         var eulerY = transform.eulerAngles.y;
-        
         if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
         var euler = new Vector3(0, eulerY, 0);
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * Time.deltaTime);
         
         //更新速度
-        var speed = Mathf.Sqrt(Mathf.Pow(moveInput.x, 2) + Mathf.Pow(moveInput.y, 2));
+        var speed = moveInput.magnitude;//Mathf.Sqrt(Mathf.Pow(moveInput.x, 2) + Mathf.Pow(moveInput.y, 2));
         transform.position += lookDirection * speed * moveSpeed * Time.deltaTime;    
     }
 
