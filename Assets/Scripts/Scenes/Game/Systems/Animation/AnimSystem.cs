@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using System.Threading;
 using UnityEngine;
-using JetBrains.Annotations;
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEditor;
 
 public class AnimSystem : MonoBehaviour
@@ -47,7 +44,8 @@ public class AnimSystem : MonoBehaviour
     // 同步事件
     [SerializeField] private Vector2EventChannel moveEvent;
     [SerializeField] private BoolEventChannel groundEvent;
-    [SerializeField] private EventChannel jumpEvent;   
+    [SerializeField] private EventChannel jumpEvent;
+    [SerializeField] private EventChannel ToSquidAnimDoneEvent;   
     // 异步事件
     [SerializeField] private AsyncEventChannel<bool> fireEvent;
     [SerializeField] private AsyncEventChannel fireTriggerEvent;
@@ -59,7 +57,7 @@ public class AnimSystem : MonoBehaviour
     [SerializeField] private AsyncEventChannel<bool> specialEvent;
 
     #endregion
-    
+
     private Rigidbody rb;
     private bool isOnGround;
     private float currentSpeed;
@@ -98,20 +96,23 @@ public class AnimSystem : MonoBehaviour
         special_code = Animator.StringToHash("special");
         #endregion
         #region variable initialize
-        varDict[InputType.Fire] = new Variable(2, false, fire_bool_code, false);
+        varDict[InputType.Fire] = new Variable(2, false, fire_bool_code);
         variableManager.AddVariable(varDict[InputType.Fire]);
 
         varDict[InputType.FireTrigger] = new Variable(2, true, fire_trigger_code, false);
         variableManager.AddVariable(varDict[InputType.FireTrigger]);
 
         varDict[InputType.Nice] = new Variable(3, true, nice_code);
-        variableManager.AddVariable(varDict[InputType.Nice]); 
+        variableManager.AddVariable(varDict[InputType.Nice]);
 
         varDict[InputType.ComeOn] = new Variable(3, true, come_on_code);
         variableManager.AddVariable(varDict[InputType.ComeOn]);
 
         varDict[InputType.Hold] = new Variable(2, false, hold_code);
         variableManager.AddVariable(varDict[InputType.Hold]);
+
+        varDict[InputType.Squid] = new Variable(2, false, squid_code);
+        variableManager.AddVariable(varDict[InputType.Squid]);
         #endregion
         #region async event initialize
         boolEventDict[InputType.Fire] = fireEvent;
@@ -127,7 +128,7 @@ public class AnimSystem : MonoBehaviour
         stateDict[InputType.FireTrigger] = "Attack";
         stateDict[InputType.Nice] = "Nice";
         stateDict[InputType.ComeOn] = "ComeOn";
-        //stateDict[InputType.Throw] = ""
+        stateDict[InputType.Squid] = "ToSquid";
         #endregion
 
     }
@@ -151,17 +152,22 @@ public class AnimSystem : MonoBehaviour
         moveEvent.OnEventRaised += HandleMove;
         groundEvent.OnEventRaised += HandleGround;
         jumpEvent.OnEventRaised += HandleJump;
-        
+
         // 异步事件
-        foreach(var pair in boolEventDict){
+        foreach (var pair in boolEventDict)
+        {
             pair.Value.OnEventRaised += ctsClear;
             pair.Value.OnEventRaised += HandleBoolEvent;
         }
 
-        foreach(var pair in triggerEventDict){
+        foreach (var pair in triggerEventDict)
+        {
             pair.Value.OnEventRaised += ctsClear;
             pair.Value.OnEventRaised += HandleTriggerEvent;
         }
+
+        // 特殊事件
+        squidEvent.OnEventRaised += HandleSquidEvent;
     }
     void OnDisable()
     {
@@ -169,15 +175,20 @@ public class AnimSystem : MonoBehaviour
         moveEvent.OnEventRaised -= HandleMove;
         groundEvent.OnEventRaised -= HandleGround;
         // 异步事件
-        foreach(var pair in boolEventDict){
+        foreach (var pair in boolEventDict)
+        {
             pair.Value.OnEventRaised -= ctsClear;
             pair.Value.OnEventRaised -= HandleBoolEvent;
         }
 
-        foreach(var pair in triggerEventDict){
+        foreach (var pair in triggerEventDict)
+        {
             pair.Value.OnEventRaised -= ctsClear;
             pair.Value.OnEventRaised -= HandleTriggerEvent;
-        }        
+        }
+
+        // 特殊事件
+        squidEvent.OnEventRaised -= HandleSquidEvent;        
     }
 
     #region Event Handler
@@ -202,11 +213,16 @@ public class AnimSystem : MonoBehaviour
             variableManager.ActivateVar(varDict[name]);
             // 异步等待bool变为false
             tcsDict[name] = new UniTaskCompletionSource();
-            try{
+            try
+            {
                 await tcsDict[name].Task.AttachExternalCancellation(cts.Token);
                 //boolEventDict[name].Ready(systemName);  
-            } catch (OperationCanceledException) {
-            } finally {
+            }
+            catch (OperationCanceledException)
+            {
+            }
+            finally
+            {
                 // 通知事件通道动画系统已处理完成
             }
         } else {
@@ -251,6 +267,16 @@ public class AnimSystem : MonoBehaviour
         cts = new CancellationTokenSource();
     }
 
+    private async void HandleSquidEvent(InputType name, bool value)
+    {   
+        if(!value) return;
+        await UniTask.WaitUntil(() =>
+            animator.GetCurrentAnimatorStateInfo(2).IsName(stateDict[InputType.Squid]) &&
+            animator.GetCurrentAnimatorStateInfo(2).normalizedTime >= 0.99f &&
+            !animator.IsInTransition(2)
+        ); 
+        ToSquidAnimDoneEvent.Raise();       
+    }
     #endregion
     private void ProcessMovementSmoothing()
     {
@@ -260,8 +286,8 @@ public class AnimSystem : MonoBehaviour
         float targetYSpeed = lastMoveInput.y;
 
         // 根据是否有输入选择平滑系数
-        float smoothFactor = (targetSpeed > 0.01f) ? 
-            acceleration * Time.deltaTime : 
+        float smoothFactor = (targetSpeed > 0.01f) ?
+            acceleration * Time.deltaTime :
             deceleration * Time.deltaTime;
 
         // 平滑过渡

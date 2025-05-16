@@ -8,14 +8,13 @@ using Cysharp.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public enum InputType{
+public enum InputType
+{
     Fire,
     FireTrigger,
     Nice,
     ComeOn,
     Hold,
-    Throw,
-    Jump,
     Squid,
     Special,
 } 
@@ -70,14 +69,14 @@ public class SignalManager
     }
 
     public async void Add(Signal signal){
-        Debug.Log(signal.inputType + "信号加入中~值为：" + signal.Value);
+        //Debug.Log(signal.inputType + "信号加入中~值为：" + signal.Value);
         if(signals.Count > 0){
             cancellationTokenSource.Cancel();
             if (currentSignal.signalType == SignalType.Trigger){
                 signals.Remove(currentSignal);
             } else if(signal.signalType == SignalType.Bool && signal.Value == false) {
                 signals.RemoveAll(s => s.inputType == signal.inputType && s.Value == true);
-                Debug.Log("我们开删了");
+                //Debug.Log("我们开删了");
             }
         }
 
@@ -95,10 +94,10 @@ public class SignalManager
             currentSignal = signals[signals.Count - 1];
             try {
                 await Processing(cancellationTokenSource.Token);
-                Debug.Log(currentSignal.inputType + "信号处理完毕" + currentSignal.Value);
+                //Debug.Log(currentSignal.inputType + "信号处理完毕" + currentSignal.Value);
                 signals.Remove(currentSignal);
             } catch (OperationCanceledException) {
-                Debug.Log("有新信号进入");
+                //Debug.Log("有新信号进入");
                 if(currentSignal.signalType == SignalType.Bool && currentSignal.Value == false)
                     signals.Remove(currentSignal);                
                 return;
@@ -114,7 +113,7 @@ public class SignalManager
     public async UniTask Processing(CancellationToken token)
     {
         token.ThrowIfCancellationRequested();
-        Debug.Log("现在处理的信号是：" + currentSignal.inputType + "状态值为：" + currentSignal.Value);
+        //Debug.Log("现在处理的信号是：" + currentSignal.inputType + "状态值为：" + currentSignal.Value);
         switch(currentSignal.signalType) {
             case SignalType.Bool:
                 var boolEventChannel = currentSignal.GetRawEventChannel() as AsyncEventChannel<bool>;
@@ -133,6 +132,6 @@ public class SignalManager
     {
         var signalInfos = signals.Select(signal => $"变量类型：{signal.inputType} 变量值：{signal.Value}");
         var output = string.Join(" | ", signalInfos);
-        Debug.Log(output);
+        //Debug.Log(output);
     }
 }

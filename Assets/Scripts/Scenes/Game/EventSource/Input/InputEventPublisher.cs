@@ -8,14 +8,13 @@ public class InputEventPublisher : MonoBehaviour
     #region 事件通道
     [Header("事件通道")]
     [SerializeField] private BoolEventChannel SyncFireEvent;
-    [SerializeField] private EventChannel SyncJumpEvent;
+    [SerializeField] private EventChannel jumpEvent;
     [SerializeField] private Vector2EventChannel moveEvent;
     [SerializeField] private AsyncBoolEventChannel fireEvent;
     [SerializeField] private AsyncEventChannel fireTriggerEvent;
     [SerializeField] private AsyncEventChannel niceEvent;
     [SerializeField] private AsyncEventChannel comeOnEvent;
     [SerializeField] private AsyncBoolEventChannel holdEvent;
-    [SerializeField] private AsyncEventChannel jumpEvent;
     [SerializeField] private AsyncBoolEventChannel squidEvent;
     [SerializeField] private AsyncBoolEventChannel specialEvent;
     
@@ -45,8 +44,7 @@ public class InputEventPublisher : MonoBehaviour
         playerInput.player.sub_weapon.started += _ => BoolSignalRaise(InputType.Hold, holdEvent, true);
         playerInput.player.sub_weapon.canceled += _ => BoolSignalRaise(InputType.Hold, holdEvent, false);      
 
-        playerInput.player.jump.started += _ => TriggerSignalRaise(InputType.Jump, jumpEvent);
-        playerInput.player.jump.started += _ => SyncJumpEvent.Raise();
+        playerInput.player.jump.started += _ => jumpEvent.Raise();
 
         playerInput.player.squid.started += _ => BoolSignalRaise(InputType.Squid, squidEvent, true);
         playerInput.player.squid.canceled += _ => BoolSignalRaise(InputType.Squid, squidEvent, false);

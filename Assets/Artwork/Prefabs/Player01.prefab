@@ -2507,7 +2507,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3728767171579460085}
   - component: {fileID: 8131583078739823643}
-  - component: {fileID: 7135470271246485048}
   - component: {fileID: 4475625429237933009}
   - component: {fileID: 2376458716859056829}
   - component: {fileID: 8316268819167123450}
@@ -2568,28 +2567,6 @@ MonoBehaviour:
   slopeEvent: {fileID: 11400000, guid: bf0f7d5756fdbaa43a83f2487b2a42d2, type: 2}
   capcol: {fileID: 0}
   rb: {fileID: 0}
---- !u!114 &7135470271246485048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4104166088337646415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c2f4b32436f0a04094b61e5ea7f2391, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}
-  fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
-  fireTriggerEvent: {fileID: 11400000, guid: 3d610e7065271e54e93fd71d246e4153, type: 2}
-  niceEvent: {fileID: 11400000, guid: b056ecd42b374f14980d889f599279ef, type: 2}
-  comeOnEvent: {fileID: 11400000, guid: 63c3b8702e5502f4e9de90e912eeac7a, type: 2}
-  holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
-  throwEvent: {fileID: 11400000, guid: df2ce0d0ce3422b43a06b469b77e14f5, type: 2}
-  jumpEvent: {fileID: 11400000, guid: d217b3f22fb4e084794b34eb21132c96, type: 2}
-  squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
-  specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
 --- !u!114 &4475625429237933009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2603,17 +2580,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  systemName: animation
   acceleration: 6
   deceleration: 4
   moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}
+  groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
+  jumpEvent: {fileID: 0}
+  ToSquidAnimDoneEvent: {fileID: 0}
   fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
   fireTriggerEvent: {fileID: 11400000, guid: 3d610e7065271e54e93fd71d246e4153, type: 2}
   niceEvent: {fileID: 11400000, guid: b056ecd42b374f14980d889f599279ef, type: 2}
   comeOnEvent: {fileID: 11400000, guid: 63c3b8702e5502f4e9de90e912eeac7a, type: 2}
   holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
-  throwEvent: {fileID: 11400000, guid: df2ce0d0ce3422b43a06b469b77e14f5, type: 2}
-  jumpEvent: {fileID: 11400000, guid: d217b3f22fb4e084794b34eb21132c96, type: 2}
-  groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
   squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
   specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
 --- !u!114 &2376458716859056829
@@ -2632,8 +2610,8 @@ MonoBehaviour:
   jumpSpeed: 25
   turnSpeed: 10
   moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}
-  fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
-  jumpEvent: {fileID: 11400000, guid: d217b3f22fb4e084794b34eb21132c96, type: 2}
+  fireEvent: {fileID: 0}
+  jumpEvent: {fileID: 0}
   groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
   slopeEvent: {fileID: 11400000, guid: bf0f7d5756fdbaa43a83f2487b2a42d2, type: 2}
 --- !u!136 &8316268819167123450

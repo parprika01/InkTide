@@ -55,7 +55,7 @@ public class AsyncEventChannel<T> : ScriptableObject
     public void Raise(InputType inputType, T value) => OnEventRaised?.Invoke(inputType, value);
     public void Ready(string system)
     {
-        Debug.Log(inputType + "animation_bool_false的通知");
+        //Debug.Log(inputType + "animation_bool_false的通知");
         OnEventReady?.Invoke(system);
     }
     public void Cancel() => OnEventCanceled?.Invoke();
@@ -65,9 +65,9 @@ public class AsyncEventChannel<T> : ScriptableObject
         var completionSource = new UniTaskCompletionSource();
         var allSystems = new HashSet<string>(systems);
         OnEventReady += Handler;
-        Debug.Log("OnEventReady subscribers: " + OnEventReady?.GetInvocationList().Length);
+        //Debug.Log("OnEventReady subscribers: " + OnEventReady?.GetInvocationList().Length);
         void Handler(string system){
-            Debug.Log(inputType + "接收到系统处理完毕通知，在列表中" + allSystems.Contains(system));
+            //Debug.Log(inputType + "接收到系统处理完毕通知，在列表中" + allSystems.Contains(system));
             if(allSystems.Contains(system)){
                 allSystems.Remove(system);
                 if(allSystems.Count == 0){
@@ -79,7 +79,7 @@ public class AsyncEventChannel<T> : ScriptableObject
         }
 
         var registration = token.Register(() => {
-            Debug.Log(inputType + "中断执行停止等待");
+            //Debug.Log(inputType + "中断执行停止等待");
             OnEventReady -= Handler;
             completionSource.TrySetCanceled(token);
         });      

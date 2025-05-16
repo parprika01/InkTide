@@ -19,6 +19,7 @@ public class FormChange : MonoBehaviour
     [SerializeField] private AsyncBoolEventChannel holdEvent;
     [SerializeField] private EventChannel ToSquidAnimDoneEvent;
     [SerializeField] private EventChannel InterruptEvent;
+    [SerializeField] private EventChannel SHuamnExitEvent;
     [Header("数据")]
     #region data
     // 总之这边之后会有一个SpecialWeapon的数据，用以获取该大招下是否可以变为鱿鱼形态
@@ -28,7 +29,8 @@ public class FormChange : MonoBehaviour
     private SkinnedMeshRenderer[] squidRenderers;
     private SkinnedMeshRenderer[] ShumanRenderers;
     #endregion
-    private enum FormState{
+    private enum FormState
+    {
         Humam,
         SHuman,
         Squid
@@ -38,9 +40,11 @@ public class FormChange : MonoBehaviour
 
     void Awake()
     {
-        squidRenderers =  squid.GetComponentsInChildren<SkinnedMeshRenderer>();
+        squidRenderers = squid.GetComponentsInChildren<SkinnedMeshRenderer>();
         humanRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-        ShumanRenderers = Shuman.GetComponentsInChildren<SkinnedMeshRenderer>();        
+        ShumanRenderers = Shuman.GetComponentsInChildren<SkinnedMeshRenderer>();
+        DisableAllRenderer(squidRenderers);
+        DisableAllRenderer(ShumanRenderers);
     }
 
     void OnEnable()
@@ -50,6 +54,7 @@ public class FormChange : MonoBehaviour
         fireEvent.OnEventRaised += HandleBoolEvent;
         fireTriggerEvent.OnEventRaised += HandleTriggerEvent;
         holdEvent.OnEventRaised += HandleBoolEvent;
+        SHuamnExitEvent.OnEventRaised += HandleSHumanExitEvent;
     }
 
     void OnDisable()
@@ -59,13 +64,16 @@ public class FormChange : MonoBehaviour
         fireEvent.OnEventRaised -= HandleBoolEvent;
         fireTriggerEvent.OnEventRaised -= HandleTriggerEvent;
         holdEvent.OnEventRaised -= HandleBoolEvent;
+        SHuamnExitEvent.OnEventRaised -= HandleSHumanExitEvent;
     }
 
     async void HandleBoolEvent(InputType inputType, bool value)
     {
-        switch (formState) {
+        switch (formState)
+        {
             case FormState.Humam:
-                if(inputType == InputType.Squid && value){
+                if (inputType == InputType.Squid && value)
+                {
                     //此时还需要等待那个ToSquid动画播放完毕
                     await WaitSignalCome(ToSquidAnimDoneEvent);
                     DisableAllRenderer(humanRenderers);
@@ -74,29 +82,37 @@ public class FormChange : MonoBehaviour
                 }
                 break;
             case FormState.SHuman:
-                if(inputType == InputType.Squid && value){
+                Debug.Log("当前状态为SHuman，接收到信号："+inputType+"值为："+value);
+                if (inputType == InputType.Squid && value)
+                {
                     await WaitSignalCome(ToSquidAnimDoneEvent);
-                    DisableAllRenderer(ShumanRenderers);
+                    DisableAllRenderer(humanRenderers);
                     EnableAllRenderer(squidRenderers);
                     formState = FormState.Squid;
-                } 
-
-                if(inputType != InputType.Squid && value){
+                }
+                
+                if (inputType != InputType.Squid && value)
+                {
+                    Debug.Log("出现了手部打断动作" + inputType);
                     InterruptEvent.Raise();
                 }
 
                 break;
             case FormState.Squid:
-                if(inputType != InputType.Squid && value){
+                if (inputType != InputType.Squid && value)
+                {
                     EnableAllRenderer(humanRenderers);
                     DisableAllRenderer(squidRenderers);
+                    DisableAllRenderer(ShumanRenderers);
                     formState = FormState.Humam;
                 }
 
-                if(inputType == InputType.Squid && false){
+                if (inputType == InputType.Squid && !value)
+                {
                     DisableAllRenderer(squidRenderers);
                     EnableAllRenderer(ShumanRenderers);
                     formState = FormState.SHuman;
+                    Debug.Log("当前的状态为：" + formState);
                     await WaitToHumanInterrupt();
                 }
 
@@ -106,17 +122,18 @@ public class FormChange : MonoBehaviour
 
     async void HandleTriggerEvent(InputType inputType)
     {
-        switch (formState) {
+        switch (formState)
+        {
             case FormState.Humam:
-                HumanController(inputType, true);
+                await HumanController(inputType, true);
                 break;
             case FormState.SHuman:
-                SHumanController(inputType, true);
+                await SHumanController(inputType, true);
                 break;
             case FormState.Squid:
-                SquidController(inputType, true);
+                await SquidController(inputType, true);
                 break;
-        }        
+        }
     }
 
     // 用于禁用指定gameObject下所有的renderer
@@ -132,9 +149,10 @@ public class FormChange : MonoBehaviour
             renderer.enabled = true;
     }
 
-    private async void HumanController(InputType inputType, bool value)
+    private async UniTask HumanController(InputType inputType, bool value)
     {
-        if(inputType == InputType.Squid && value){
+        if (inputType == InputType.Squid && value)
+        {
             //此时还需要等待那个ToSquid动画播放完毕
             await WaitSignalCome(ToSquidAnimDoneEvent);
             DisableAllRenderer(humanRenderers);
@@ -143,15 +161,17 @@ public class FormChange : MonoBehaviour
         }
     }
 
-    private async void SquidController(InputType inputType, bool value)
+    private async UniTask SquidController(InputType inputType, bool value)
     {
-        if(inputType != InputType.Squid && value){
+        if (inputType != InputType.Squid && value)
+        {
             EnableAllRenderer(humanRenderers);
             DisableAllRenderer(squidRenderers);
             formState = FormState.Humam;
         }
 
-        if(inputType == InputType.Squid && false){
+        if (inputType == InputType.Squid && false)
+        {
             DisableAllRenderer(squidRenderers);
             EnableAllRenderer(ShumanRenderers);
             formState = FormState.SHuman;
@@ -159,16 +179,18 @@ public class FormChange : MonoBehaviour
         }
     }
 
-    private async void SHumanController(InputType inputType, bool value)
+    private async UniTask SHumanController(InputType inputType, bool value)
     {
-        if(inputType == InputType.Squid && value){
+        if (inputType == InputType.Squid && value)
+        {
             await WaitSignalCome(ToSquidAnimDoneEvent);
             DisableAllRenderer(ShumanRenderers);
             EnableAllRenderer(squidRenderers);
             formState = FormState.Squid;
-        } 
+        }
 
-        if(inputType != InputType.Squid && value){
+        if (inputType != InputType.Squid && value)
+        {
             InterruptEvent.Raise();
         }
     }
@@ -176,12 +198,14 @@ public class FormChange : MonoBehaviour
     private UniTask WaitSignalCome(EventChannel eventChannel)
     {
         var completionSource = new UniTaskCompletionSource();
-        void Handler(){
+        void Handler()
+        {
+            Debug.Log("收到了event" + eventChannel);
             completionSource.TrySetResult();
             eventChannel.OnEventRaised -= Handler;
         }
         eventChannel.OnEventRaised += Handler;
-        return completionSource.Task;        
+        return completionSource.Task;
     }
 
     private async UniTask WaitToHumanInterrupt()
@@ -189,6 +213,16 @@ public class FormChange : MonoBehaviour
         UniTask InterruptTask = WaitSignalCome(InterruptEvent);
         UniTask timeOutTask = UniTask.Delay((int)(stayTime * 1000));
         await UniTask.WhenAny(timeOutTask, InterruptTask);
+        SHuamnExitEvent.Raise();
+    }
+
+    private void HandleSHumanExitEvent()
+    {
+        Debug.Log("SHumanExitEvent");
+        EnableAllRenderer(humanRenderers);
+        DisableAllRenderer(ShumanRenderers);
+        DisableAllRenderer(squidRenderers);
+        formState = FormState.Humam;
     }
 
 }
