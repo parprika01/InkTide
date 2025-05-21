@@ -46,6 +46,7 @@ public class FormChange : MonoBehaviour
         DisableAllRenderer(squidRenderers);
         DisableAllRenderer(ShumanRenderers);
     }
+    
 
     void OnEnable()
     {
@@ -74,7 +75,6 @@ public class FormChange : MonoBehaviour
             case FormState.Humam:
                 if (inputType == InputType.Squid && value)
                 {
-                    //此时还需要等待那个ToSquid动画播放完毕
                     await WaitSignalCome(ToSquidAnimDoneEvent);
                     DisableAllRenderer(humanRenderers);
                     EnableAllRenderer(squidRenderers);
@@ -82,7 +82,6 @@ public class FormChange : MonoBehaviour
                 }
                 break;
             case FormState.SHuman:
-                Debug.Log("当前状态为SHuman，接收到信号："+inputType+"值为："+value);
                 if (inputType == InputType.Squid && value)
                 {
                     await WaitSignalCome(ToSquidAnimDoneEvent);
@@ -93,7 +92,6 @@ public class FormChange : MonoBehaviour
                 
                 if (inputType != InputType.Squid && value)
                 {
-                    Debug.Log("出现了手部打断动作" + inputType);
                     InterruptEvent.Raise();
                 }
 
@@ -112,7 +110,6 @@ public class FormChange : MonoBehaviour
                     DisableAllRenderer(squidRenderers);
                     EnableAllRenderer(ShumanRenderers);
                     formState = FormState.SHuman;
-                    Debug.Log("当前的状态为：" + formState);
                     await WaitToHumanInterrupt();
                 }
 
@@ -200,7 +197,6 @@ public class FormChange : MonoBehaviour
         var completionSource = new UniTaskCompletionSource();
         void Handler()
         {
-            Debug.Log("收到了event" + eventChannel);
             completionSource.TrySetResult();
             eventChannel.OnEventRaised -= Handler;
         }
@@ -218,7 +214,6 @@ public class FormChange : MonoBehaviour
 
     private void HandleSHumanExitEvent()
     {
-        Debug.Log("SHumanExitEvent");
         EnableAllRenderer(humanRenderers);
         DisableAllRenderer(ShumanRenderers);
         DisableAllRenderer(squidRenderers);

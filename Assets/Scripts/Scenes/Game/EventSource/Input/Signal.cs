@@ -90,7 +90,7 @@ public class SignalManager
     {
         while(signals.Count > 0){
             //Debug.Log("处理中~当前信号数：" + signals.Count);
-            PrintSignals();
+            //PrintSignals();
             currentSignal = signals[signals.Count - 1];
             try {
                 await Processing(cancellationTokenSource.Token);

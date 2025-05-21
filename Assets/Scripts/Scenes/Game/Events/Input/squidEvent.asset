@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: squidEvent
   m_EditorClassIdentifier: 
   signalType: 0
-  inputType: 7
+  inputType: 0
   systems:
   - animation

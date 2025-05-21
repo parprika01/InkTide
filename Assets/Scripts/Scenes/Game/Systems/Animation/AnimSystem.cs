@@ -134,20 +134,6 @@ public class AnimSystem : MonoBehaviour
     }
     void OnEnable()
     {
-        /*
-        
-        fireEvent.OnEventRaised += HandleFire;
-        fireTriggerEvent.OnEventRaised += HandleFireTrigger;
-        niceEvent.OnEventRaised += HandleNice;
-        comeOnEvent.OnEventRaised += HandleComeOn;
-        holdEvent.OnEventRaised += HandleHold;
-        throwEvent.OnEventRaised += HandleThrow;
-        jumpEvent.OnEventRaised += HandleJump;
-        
-        specialEvent.OnEventRaised += HandleSpecial;     
-        fireTriggerAsyncEvent.OnEventRaised += HandleFireTriggerTest;
-        //fireTriggerAsyncEvent.OnEventCancled += ctsCollection["fire_trigger"].Cancel;
-        */
         // 同步事件
         moveEvent.OnEventRaised += HandleMove;
         groundEvent.OnEventRaised += HandleGround;
@@ -201,11 +187,9 @@ public class AnimSystem : MonoBehaviour
         isOnGround = ground;
         animator.SetBool(ground_code, ground);
     }  
-
     private void HandleJump(){
         animator.SetTrigger(jump_code);
     }
-
     private async void HandleBoolEvent(InputType name, bool value){
         
         if (value) {
@@ -232,7 +216,6 @@ public class AnimSystem : MonoBehaviour
             boolEventDict[name].Ready(systemName);
         }
     }
-
     private async void HandleTriggerEvent(InputType name)
     {
         try {
@@ -312,5 +295,4 @@ public class AnimSystem : MonoBehaviour
             animator.SetFloat(z_speed_code, rb.velocity.z);
         }
     }
-
 }

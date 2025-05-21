@@ -85,6 +85,7 @@ public class InputEventPublisher : MonoBehaviour
 
 
     private void TriggerSignalRaise(InputType inputType, AsyncEventChannel eventChannel){
+        // 记得信号的释放
         TriggerSignal signal = new TriggerSignal(eventChannel,inputType);
         signalManager.Add(signal);
     }

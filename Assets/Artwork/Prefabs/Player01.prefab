@@ -2508,6 +2508,7 @@ GameObject:
   - component: {fileID: 3728767171579460085}
   - component: {fileID: 8131583078739823643}
   - component: {fileID: 4475625429237933009}
+  - component: {fileID: 454406436792977505}
   - component: {fileID: 2376458716859056829}
   - component: {fileID: 8316268819167123450}
   - component: {fileID: 41930448094698240}
@@ -2594,6 +2595,31 @@ MonoBehaviour:
   holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
   squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
   specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
+--- !u!114 &454406436792977505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4104166088337646415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df054d8edf4e16498ff9f748902e6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stayTime: 0.6
+  systemName: formChange
+  squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
+  specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
+  fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
+  fireTriggerEvent: {fileID: 11400000, guid: 3d610e7065271e54e93fd71d246e4153, type: 2}
+  holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
+  ToSquidAnimDoneEvent: {fileID: 11400000, guid: 996277fa2058028459b9d83447d08cf2,
+    type: 2}
+  InterruptEvent: {fileID: 11400000, guid: 29fa1d36029f17a4e883d7140e1fd40b, type: 2}
+  SHuamnExitEvent: {fileID: 11400000, guid: a9cdb75f1a83a58419f06074b6997c3d, type: 2}
+  squid: {fileID: 0}
+  Shuman: {fileID: 0}
 --- !u!114 &2376458716859056829
 MonoBehaviour:
   m_ObjectHideFlags: 0

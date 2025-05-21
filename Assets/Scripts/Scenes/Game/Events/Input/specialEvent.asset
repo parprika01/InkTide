@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: specialEvent
   m_EditorClassIdentifier: 
   signalType: 0
-  inputType: 8
+  inputType: 0
   systems:
   - animation

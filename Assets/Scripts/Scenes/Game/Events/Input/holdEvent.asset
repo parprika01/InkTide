@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: holdEvent
   m_EditorClassIdentifier: 
   signalType: 0
-  inputType: 4
+  inputType: 0
   systems:
   - animation
