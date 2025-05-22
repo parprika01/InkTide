@@ -31,6 +31,14 @@ public class SceneDirector : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    /*
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            SceneManager.LoadScene(scenes[++index % scenes.Count]);
+        }
+    }*/
 
     private void HandleSceneChangeEvent(string sceneName)
     {

@@ -59,7 +59,6 @@ public class EquipSystem : MonoBehaviour
     {
         InitializeEvent.OnEventRaised += SettingInitialize;
         settingChangeEvent.OnEventRaised += HandleSettingChangeEvent;
-
         renderers = GetComponentsInChildren<SkinnedMeshRenderer>();
     }
     private void Start()

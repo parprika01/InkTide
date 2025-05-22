@@ -603,15 +603,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player00_setting
       objectReference: {fileID: 0}
-    - target: {fileID: 6675522868475546263, guid: eb2e8670f8a433f48b09db1dfd192a93,
+    - target: {fileID: 8366700651066459702, guid: eb2e8670f8a433f48b09db1dfd192a93,
         type: 3}
-      propertyPath: settingChangeEvent
-      value: 
-      objectReference: {fileID: 11400000, guid: 357785ab829837b4695db685ddbb2b9a,
-        type: 2}
+      propertyPath: m_TagString
+      value: Root
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 5147303024174593257, guid: eb2e8670f8a433f48b09db1dfd192a93, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb2e8670f8a433f48b09db1dfd192a93, type: 3}
