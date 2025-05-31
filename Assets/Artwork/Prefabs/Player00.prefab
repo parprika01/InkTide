@@ -88,13 +88,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9007364158372499270}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3283711171691226551}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 90}
 --- !u!1001 &2713088469256628316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,8 +1071,8 @@ MonoBehaviour:
   niceEvent: {fileID: 11400000, guid: b056ecd42b374f14980d889f599279ef, type: 2}
   comeOnEvent: {fileID: 11400000, guid: 3f423a053ca08da4c84809fda535334e, type: 2}
   holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
-  squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
-  specialEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
+  squidEvent: {fileID: 11400000, guid: 95165641ca32aa94893d8afa446597d7, type: 2}
+  specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
 --- !u!114 &788955816882777977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stayTime: 0.6
   systemName: formChange
-  squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
+  squidEvent: {fileID: 11400000, guid: 95165641ca32aa94893d8afa446597d7, type: 2}
   specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
   fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
   fireTriggerEvent: {fileID: 11400000, guid: 3d610e7065271e54e93fd71d246e4153, type: 2}
@@ -1201,9 +1201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a65e03484babd15418718cfcf82fa0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitializeEvent: {fileID: 11400000, guid: 11e0c9e8dd2d0d34e842f1e85a7ef708, type: 2}
+  settingChangeEvent: {fileID: 11400000, guid: 357785ab829837b4695db685ddbb2b9a, type: 2}
   equipDict: {fileID: 11400000, guid: 17094fa686fcbc240be34686efce3057, type: 2}
-  rootBone: {fileID: 5196974204802867396}
-  TestPoint: {fileID: 7359671775702126604}
+  root: {fileID: 5196974204802867396}
+  material: {fileID: 0}
   headPos: {fileID: 7359671775702126604}
   leftHandPos: {fileID: 3771638416648575713}
   rightHandPos: {fileID: 638939084178727027}
@@ -1211,7 +1213,7 @@ MonoBehaviour:
   hair: {fileID: 0}
   eyebrows: {fileID: 0}
   bottom: {fileID: 0}
-  top: {fileID: 0}
+  cloth: {fileID: 0}
   leftShoe: {fileID: 0}
   rightShoe: {fileID: 0}
   head: {fileID: 0}
@@ -1801,4 +1803,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78b1c9a309fe36043a2bfba93e74d3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
+  squidEvent: {fileID: 11400000, guid: 95165641ca32aa94893d8afa446597d7, type: 2}

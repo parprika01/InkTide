@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Highlight_bg
+=======
+  - Root
+>>>>>>> 3ddc6d6203ceb910f4565dc41a69386159f4882d
   layers:
   - Default
   - TransparentFX
