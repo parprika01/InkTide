@@ -46,15 +46,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""padLook"",
-                    ""type"": ""Value"",
-                    ""id"": ""4c8f7d3f-72c0-48e0-a131-d995a06c3bb7"",
-                    ""expectedControlType"": ""Vector3"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
-                },
-                {
                     ""name"": ""sub_weapon"",
                     ""type"": ""Button"",
                     ""id"": ""5aaeace9-e7b6-439a-8294-9e89ae59b6ef"",
@@ -185,8 +176,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""a4c1c157-2606-4dc0-8521-329cc71089ca"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""11b26b72-518b-4004-a5da-7fe8e7ed0d7e"",
                     ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""sub_weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24e6cc67-7b9b-4c07-8dbd-a14a05bb5bf8"",
+                    ""path"": ""<SwitchProControllerHID>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -207,8 +220,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""b2d2ad6c-132d-4842-85ba-5da1d727e418"",
+                    ""path"": ""<SwitchProControllerHID>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""nice"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""51edcbfc-fcef-42fe-8d4d-57d65a69ca15"",
                     ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""come_on"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4f890cd0-17bd-4fd9-95b3-0fe486303f2b"",
+                    ""path"": ""<SwitchProControllerHID>/dpad/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -240,6 +275,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""ebd6d8d9-1401-4d5c-b56f-b7c1f50b55d6"",
+                    ""path"": ""<SwitchProControllerHID>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ce114a6d-6d05-46c5-96a2-744345c7f78d"",
                     ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
@@ -251,12 +297,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""fd1b6b4e-bb50-497d-bf67-872e87464917"",
-                    ""path"": ""<Gyroscope>/angularVelocity"",
+                    ""id"": ""bf1d210d-d8b4-4c37-a305-e6c0a1ded7f4"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""padLook"",
+                    ""action"": ""look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -273,8 +319,30 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2c07059d-683a-406f-b965-035677ed8b25"",
+                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4db2b456-5a15-4a0d-9abb-d7a2ae1091bc"",
                     ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""squid"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fe9990f6-b582-43b1-8aa0-df62a3703d11"",
+                    ""path"": ""<SwitchProControllerHID>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -330,7 +398,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_player = asset.FindActionMap("player", throwIfNotFound: true);
         m_player_move = m_player.FindAction("move", throwIfNotFound: true);
         m_player_look = m_player.FindAction("look", throwIfNotFound: true);
-        m_player_padLook = m_player.FindAction("padLook", throwIfNotFound: true);
         m_player_sub_weapon = m_player.FindAction("sub_weapon", throwIfNotFound: true);
         m_player_special_weapon = m_player.FindAction("special_weapon", throwIfNotFound: true);
         m_player_nice = m_player.FindAction("nice", throwIfNotFound: true);
@@ -405,7 +472,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_player_move;
     private readonly InputAction m_player_look;
-    private readonly InputAction m_player_padLook;
     private readonly InputAction m_player_sub_weapon;
     private readonly InputAction m_player_special_weapon;
     private readonly InputAction m_player_nice;
@@ -420,7 +486,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @move => m_Wrapper.m_player_move;
         public InputAction @look => m_Wrapper.m_player_look;
-        public InputAction @padLook => m_Wrapper.m_player_padLook;
         public InputAction @sub_weapon => m_Wrapper.m_player_sub_weapon;
         public InputAction @special_weapon => m_Wrapper.m_player_special_weapon;
         public InputAction @nice => m_Wrapper.m_player_nice;
@@ -444,9 +509,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @look.started += instance.OnLook;
             @look.performed += instance.OnLook;
             @look.canceled += instance.OnLook;
-            @padLook.started += instance.OnPadLook;
-            @padLook.performed += instance.OnPadLook;
-            @padLook.canceled += instance.OnPadLook;
             @sub_weapon.started += instance.OnSub_weapon;
             @sub_weapon.performed += instance.OnSub_weapon;
             @sub_weapon.canceled += instance.OnSub_weapon;
@@ -481,9 +543,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @look.started -= instance.OnLook;
             @look.performed -= instance.OnLook;
             @look.canceled -= instance.OnLook;
-            @padLook.started -= instance.OnPadLook;
-            @padLook.performed -= instance.OnPadLook;
-            @padLook.canceled -= instance.OnPadLook;
             @sub_weapon.started -= instance.OnSub_weapon;
             @sub_weapon.performed -= instance.OnSub_weapon;
             @sub_weapon.canceled -= instance.OnSub_weapon;
@@ -575,7 +634,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
-        void OnPadLook(InputAction.CallbackContext context);
         void OnSub_weapon(InputAction.CallbackContext context);
         void OnSpecial_weapon(InputAction.CallbackContext context);
         void OnNice(InputAction.CallbackContext context);

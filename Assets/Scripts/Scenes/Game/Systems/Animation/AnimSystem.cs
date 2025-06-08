@@ -75,7 +75,8 @@ public class AnimSystem : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         variableManager = new VariableManager(animator);
-        rb = GetComponent<Rigidbody>();
+        rb = GetComponentInParent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
 
         #region animation var hash initialize
         fire_bool_code = Animator.StringToHash("fire_bool");

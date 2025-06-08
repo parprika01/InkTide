@@ -17,8 +17,6 @@ public class InputEventPublisher : MonoBehaviour
     [SerializeField] private AsyncBoolEventChannel holdEvent;
     [SerializeField] private AsyncBoolEventChannel squidEvent;
     [SerializeField] private AsyncBoolEventChannel specialEvent;
-    
-
     #endregion
     private PlayerInput playerInput;
     private Vector2 _currentMoveInput;

@@ -12,6 +12,7 @@ public class EquipSystem : MonoBehaviour
     [Header("event")]
     [SerializeField] private EventChannel InitializeEvent;
     [SerializeField] private SettingChangeEventChannel settingChangeEvent;
+    [SerializeField] private EventChannel EquipLoadDoneEvent;
     #endregion
     public DataDictionary equipDict;
     public GameObject root;
@@ -133,6 +134,7 @@ public class EquipSystem : MonoBehaviour
         {
             ReplaceBones(equip);
         }
+        EquipLoadDoneEvent.Raise();
     }
     void ReplaceBones(GameObject equip)
     {

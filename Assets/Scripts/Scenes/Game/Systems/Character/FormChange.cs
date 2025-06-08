@@ -19,7 +19,9 @@ public class FormChange : MonoBehaviour
     [SerializeField] private AsyncBoolEventChannel holdEvent;
     [SerializeField] private EventChannel ToSquidAnimDoneEvent;
     [SerializeField] private EventChannel InterruptEvent;
-    [SerializeField] private EventChannel SHuamnExitEvent;
+    [SerializeField] private EventChannel SHumanExitEvent;
+    [SerializeField] private BoolEventChannel inkAreaEvent;
+    [SerializeField] private EventChannel EquipLoadDoneEvent;
     [Header("数据")]
     #region data
     // 总之这边之后会有一个SpecialWeapon的数据，用以获取该大招下是否可以变为鱿鱼形态
@@ -33,21 +35,12 @@ public class FormChange : MonoBehaviour
     {
         Humam,
         SHuman,
-        Squid
+        Squid,
     }
 
     private FormState formState = FormState.Humam;
-
-    void Awake()
-    {
-        squidRenderers = squid.GetComponentsInChildren<SkinnedMeshRenderer>();
-        humanRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
-        ShumanRenderers = Shuman.GetComponentsInChildren<SkinnedMeshRenderer>();
-        DisableAllRenderer(squidRenderers);
-        DisableAllRenderer(ShumanRenderers);
-    }
+    private bool _isInInkArea;    
     
-
     void OnEnable()
     {
         squidEvent.OnEventRaised += HandleBoolEvent;
@@ -55,7 +48,9 @@ public class FormChange : MonoBehaviour
         fireEvent.OnEventRaised += HandleBoolEvent;
         fireTriggerEvent.OnEventRaised += HandleTriggerEvent;
         holdEvent.OnEventRaised += HandleBoolEvent;
-        SHuamnExitEvent.OnEventRaised += HandleSHumanExitEvent;
+        SHumanExitEvent.OnEventRaised += HandleSHumanExitEvent;
+        inkAreaEvent.OnEventRaised += HandleInkAreaEvent;
+        EquipLoadDoneEvent.OnEventRaised += RendererInitialize;
     }
 
     void OnDisable()
@@ -65,7 +60,9 @@ public class FormChange : MonoBehaviour
         fireEvent.OnEventRaised -= HandleBoolEvent;
         fireTriggerEvent.OnEventRaised -= HandleTriggerEvent;
         holdEvent.OnEventRaised -= HandleBoolEvent;
-        SHuamnExitEvent.OnEventRaised -= HandleSHumanExitEvent;
+        SHumanExitEvent.OnEventRaised -= HandleSHumanExitEvent;
+        inkAreaEvent.OnEventRaised -= HandleInkAreaEvent;
+        EquipLoadDoneEvent.OnEventRaised -= RendererInitialize;
     }
 
     async void HandleBoolEvent(InputType inputType, bool value)
@@ -77,8 +74,9 @@ public class FormChange : MonoBehaviour
                 {
                     await WaitSignalCome(ToSquidAnimDoneEvent);
                     DisableAllRenderer(humanRenderers);
-                    EnableAllRenderer(squidRenderers);
+                    if(!_isInInkArea) EnableAllRenderer(squidRenderers);
                     formState = FormState.Squid;
+                    
                 }
                 break;
             case FormState.SHuman:
@@ -86,7 +84,7 @@ public class FormChange : MonoBehaviour
                 {
                     await WaitSignalCome(ToSquidAnimDoneEvent);
                     DisableAllRenderer(humanRenderers);
-                    EnableAllRenderer(squidRenderers);
+                    if(!_isInInkArea) EnableAllRenderer(squidRenderers);
                     formState = FormState.Squid;
                 }
                 
@@ -112,7 +110,6 @@ public class FormChange : MonoBehaviour
                     formState = FormState.SHuman;
                     await WaitToHumanInterrupt();
                 }
-
                 break;
         }
     }
@@ -167,7 +164,7 @@ public class FormChange : MonoBehaviour
             formState = FormState.Humam;
         }
 
-        if (inputType == InputType.Squid && false)
+        if (inputType == InputType.Squid && value == false)
         {
             DisableAllRenderer(squidRenderers);
             EnableAllRenderer(ShumanRenderers);
@@ -209,7 +206,7 @@ public class FormChange : MonoBehaviour
         UniTask InterruptTask = WaitSignalCome(InterruptEvent);
         UniTask timeOutTask = UniTask.Delay((int)(stayTime * 1000));
         await UniTask.WhenAny(timeOutTask, InterruptTask);
-        SHuamnExitEvent.Raise();
+        SHumanExitEvent.Raise();
     }
 
     private void HandleSHumanExitEvent()
@@ -218,6 +215,28 @@ public class FormChange : MonoBehaviour
         DisableAllRenderer(ShumanRenderers);
         DisableAllRenderer(squidRenderers);
         formState = FormState.Humam;
+    }
+
+    private void HandleInkAreaEvent(bool value)
+    {
+        _isInInkArea = value;
+        if (value && formState == FormState.Squid)
+        {
+            DisableAllRenderer(squidRenderers);
+        }
+        else if (!value && formState == FormState.Squid)
+        {
+            EnableAllRenderer(squidRenderers);
+        }
+    }
+
+    private void RendererInitialize()
+    {
+        squidRenderers = squid.GetComponentsInChildren<SkinnedMeshRenderer>();
+        humanRenderers = gameObject.GetComponentsInChildren<SkinnedMeshRenderer>();
+        ShumanRenderers = Shuman.GetComponentsInChildren<SkinnedMeshRenderer>();
+        DisableAllRenderer(squidRenderers);
+        DisableAllRenderer(ShumanRenderers);        
     }
 
 }

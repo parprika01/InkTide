@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 public class MoveSystem : MonoBehaviour
@@ -28,6 +29,14 @@ public class MoveSystem : MonoBehaviour
     {
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (isFire)
+        {
+            UpdateDirection();
+        }
     }
 
     private void OnEnable()
@@ -106,6 +115,19 @@ public class MoveSystem : MonoBehaviour
         transform.position += lookDirection * speed * moveSpeed * Time.deltaTime;    
     }
 
+    private void UpdateDirection()
+    {
+        var forward = cam.transform.forward;
+        forward.y = 0;        
+        //将当前的方向想摄像机方向旋转，并且只y分量为0
+        freeRotation = Quaternion.LookRotation(forward, transform.up);
+        var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
+        var eulerY = transform.eulerAngles.y;
+        if (diferenceRotation < 0 || diferenceRotation > 0) eulerY = freeRotation.eulerAngles.y;
+        var euler = new Vector3(0, eulerY, 0);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), turnSpeed * Time.deltaTime);        
+    }
+    
     private void Jump()
     {
         if(isOnGround){
