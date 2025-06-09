@@ -1,0 +1,23 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+Texture2D<float4> _InkTex;
+Texture2D<float4> _WorldPosTex;
+float3 _WorldPos;
+
+// 输出缓冲区（单个bool值）
+RWStructuredBuffer<int> _IsCovered;
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    float4 worldPos = _WorldPosTex[id.xy];
+    float4 currentInk = _InkTex[id.xy];
+
+    if (distance(_WorldPos, worldPos.xyz) <= 0.75 && currentInk.r == 1)
+    {
+        _IsCovered[0] = 1;
+    }
+}
