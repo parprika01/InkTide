@@ -73,7 +73,7 @@ public class InputEventPublisher : MonoBehaviour
         moveEvent.Raise(_currentMoveInput); // 通知停止移动
     }   
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (_currentMoveInput != Vector2.zero)
         {

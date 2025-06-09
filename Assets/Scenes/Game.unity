@@ -202,7 +202,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129326164}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.09463768, y: -0.006729394, z: 0.00010062311, w: 0.99548906}
+  m_LocalRotation: {x: -0.09463768, y: -0.0067294277, z: 0.000100623576, w: 0.99548906}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -303,8 +303,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.058072798, y: 0.000000011724679, z: 6.820359e-10, w: 0.99831235}
-  m_LocalPosition: {x: -0.00000014651378, y: 1, z: -10}
+  m_LocalRotation: {x: -0.058072798, y: 0.000000011804405, z: 6.8667366e-10, w: 0.99831235}
+  m_LocalPosition: {x: -0.00000014880227, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -620,7 +620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559893214}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.1307363, y: -0.00672862, z: -0.00014388844, w: 0.9913944}
+  m_LocalRotation: {x: -0.1307363, y: -0.00672862, z: -0.00014388839, w: 0.9913944}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -699,7 +699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 761140782}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.112729445, y: -0.006730125, z: -0.000021797729, w: 0.99360293}
+  m_LocalRotation: {x: -0.112729445, y: -0.006730125, z: -0.00002179773, w: 0.99360293}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6543,7 +6543,7 @@ Transform:
   m_GameObject: {fileID: 1871735315}
   serializedVersion: 2
   m_LocalRotation: {x: 0.054837897, y: 0.0067200423, z: -0.00036907673, w: 0.99847263}
-  m_LocalPosition: {x: -0.00000014651378, y: 1, z: -10}
+  m_LocalPosition: {x: -0.00000014880227, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6880,6 +6880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  acceleration: 2
   jumpSpeed: 25
   turnSpeed: 10
   moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}

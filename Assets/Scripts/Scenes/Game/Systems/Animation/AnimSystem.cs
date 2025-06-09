@@ -13,6 +13,7 @@ public class AnimSystem : MonoBehaviour
     public string systemName = "animation";
     [SerializeField] private float acceleration = 8f;  // 加速系数
     [SerializeField] private float deceleration = 12f; // 减速系数   
+    [SerializeField] private float maxSpeed = 5f;
 
     #region animations
     private int fire_bool_code;
@@ -289,9 +290,20 @@ public class AnimSystem : MonoBehaviour
         animator.SetFloat(x_speed_code, currentXSpeed);
         animator.SetFloat(y_speed_code, currentYSpeed);
     }
+
+    void MovementSetting()
+    {
+        currentSpeed = rb.velocity.magnitude;
+        currentXSpeed = rb.velocity.x;
+        currentYSpeed = rb.velocity.y;
+        animator.SetFloat(speed_code, currentSpeed / maxSpeed);
+        animator.SetFloat(x_speed_code, currentXSpeed / maxSpeed);
+        animator.SetFloat(y_speed_code, currentYSpeed / maxSpeed);
+    }
+    
     void Update()
     {
-        ProcessMovementSmoothing();
+        MovementSetting();
         if(!isOnGround){
             animator.SetFloat(z_speed_code, rb.velocity.z);
         }
