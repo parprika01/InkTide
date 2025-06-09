@@ -129,7 +129,7 @@ public class MoveSystem : MonoBehaviour
     private void Jump()
     {
         if(isOnGround){
-            rb.AddForce(Vector3.up * jumpSpeed);
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange);
         }
     }
 
