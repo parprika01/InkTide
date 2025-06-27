@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 546dd5f2ae635d1498de88525580bc80, type: 3}
-  m_Name: inkAreaEvent
+  m_Script: {fileID: 0}
+  m_Name: syncHoldEvent
   m_EditorClassIdentifier: Assembly-CSharp::BoolEventChannel
