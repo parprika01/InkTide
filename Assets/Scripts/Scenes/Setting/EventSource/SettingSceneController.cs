@@ -6,7 +6,7 @@ public class SettingSceneController : MonoBehaviour
 {
     [Header("event")]
     [SerializeField] private EventChannel InitializeEvent;
-
+    
     void Start()
     {
         Initialize();

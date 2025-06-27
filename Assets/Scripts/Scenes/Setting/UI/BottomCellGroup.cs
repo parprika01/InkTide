@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BottomCellGroup : MonoBehaviour
 {
-    [Header("底部点击单元集合")] BottomCellTab[] BtnCellList;
+    // [Header("底部点击单元集合")] BottomCellTab[] BtnCellList;
     private BottomCellTab lastSelectedBtn = null;
 
     //当某个Btn被选中时执行响应的动作
-    private void HandleCellSelectedEvent(BottomCellTab btn)
+    public void HandleCellSelectedEvent(BottomCellTab btn)
     {
         //判断当前是否有其他Cell已经被选中
         if (!is_Selected(btn))
@@ -19,11 +19,13 @@ public class BottomCellGroup : MonoBehaviour
         //取消lastSelectedBtn的选中事件
         if (lastSelectedBtn != null)
         {
-           lastSelectedBtn.DownMoveEvent(); 
+            lastSelectedBtn.DownMoveEvent();
         }
         //更新
         lastSelectedBtn = btn;
         //btn的move事件
+        btn.UpMoveEvent();
+        
     }
 
     private bool is_Selected(BottomCellTab btn)
