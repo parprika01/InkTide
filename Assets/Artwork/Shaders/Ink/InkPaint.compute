@@ -1,0 +1,81 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+struct PaintCommand{
+    float4 pos;
+    float4 color;
+    float scale;
+    int texIndex;
+    float3 normal;
+    float3 impactDirection;
+};
+RWStructuredBuffer<PaintCommand> _PaintCommands;
+int _CommandCount;
+Texture2DArray<float> _PaintTexArray;
+Texture2D<float4> _WorldPosTex;
+Texture2D<float4> _WorldPosTopTex;
+RWTexture2D<float4> _InkTex;
+RWTexture2D<float4> _EffectInkTex;
+SamplerState sampler_PaintTexArray;
+float _Strength = 0.7;
+
+// 添加全局计数器
+RWStructuredBuffer<int> _InkPointCounter;
+
+float2 rotateUV(float2 uv, float angleDeg, float2 center)
+{
+    float angle = radians(angleDeg); // HLSL 内置转换
+    float s = sin(angle);
+    float c = cos(angle);
+    float2 p = uv - center;
+    return float2(c * p.x - s * p.y, s * p.x + c * p.y) + center;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    float4 worldPos = _WorldPosTex[id.xy];
+    float4 worldPosTop = _WorldPosTopTex[id.xy];
+    float4 currentInk = _InkTex[id.xy];
+    float4 originalInk = currentInk;
+    float4 paintColor = float4(1, 0, 0, 1);
+    float2 uv = float2(0 ,0);
+    
+    for(int i=0; i<_CommandCount; i++){
+        float4 pos = _PaintCommands[i].pos;
+        float4 color = _PaintCommands[i].color;
+        float scale = _PaintCommands[i].scale;
+        int texIndex = _PaintCommands[i].texIndex;
+        float impactDirection = _PaintCommands[i].impactDirection;
+        float3 forward = normalize(_PaintCommands[i].normal);
+        float3 up = abs(forward.y) < 0.99 ? float3(0,1,0) : float3(1,0,0);
+        float3 right = normalize(cross(up, forward));   // 局部 x 方向（U）
+        float3 upVec = cross(forward, right);           // 局部 y 方向（V）
+        
+        float3 Vec = worldPos.xyz - pos.xyz;
+        float dist = dot(Vec, forward);
+
+        float3 newPoint = worldPos.xyz - dist * forward;
+        newPoint = newPoint + normalize(newPoint - pos.xyz) * abs(dist);
+        float3 offset = newPoint.xyz - pos.xyz;
+        uv.y = dot(offset, right) / scale + 0.5;
+        uv.x = dot(offset, upVec) / scale + 0.5;
+        uv = rotateUV(uv, impactDirection, float2(0.5f, 0.5f));
+        
+        paintColor = _PaintTexArray.SampleLevel(sampler_PaintTexArray, float3(uv, texIndex), 0);
+
+        if(uv.x >= 0 && uv.x <= 1 && uv.y >= 0 && uv.y <= 1) {
+            currentInk = lerp(currentInk, color, paintColor.a);
+        }
+        
+       
+    }
+    _InkTex[id.xy] = currentInk;
+    static const float epsilon = 0.0001f;
+    if(length(worldPosTop) > epsilon)
+    {
+        _EffectInkTex[id.xy] = currentInk;
+        if (originalInk.a <= 0.75 && currentInk.a > 0.75) {
+            InterlockedAdd(_InkPointCounter[0], 1); // 原子操作增加计数器
+        }        
+    } 
+}

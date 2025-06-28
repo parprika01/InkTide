@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 900268821abac7545a0fabd478426a85
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - animator: {instanceID: 0}
+  - moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}
+  - fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
+  - fireTriggerEvent: {fileID: 11400000, guid: 3d610e7065271e54e93fd71d246e4153, type: 2}
+  - niceEvent: {fileID: 11400000, guid: b056ecd42b374f14980d889f599279ef, type: 2}
+  - comeOnEvent: {fileID: 11400000, guid: 63c3b8702e5502f4e9de90e912eeac7a, type: 2}
+  - holdEvent: {fileID: 11400000, guid: 2e67d549ac229f647bcafc2c7d1d9c58, type: 2}
+  - throwEvent: {fileID: 11400000, guid: df2ce0d0ce3422b43a06b469b77e14f5, type: 2}
+  - jumpEvent: {fileID: 11400000, guid: d217b3f22fb4e084794b34eb21132c96, type: 2}
+  - groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
+  - squidEvent: {fileID: 11400000, guid: 73f5f9bf34fad994aa24408d74343799, type: 2}
+  - specialEvent: {fileID: 11400000, guid: 16f59f8df36531b43836fcc4c7b841be, type: 2}
+  - fireTriggerAsyncEvent: {fileID: 11400000, guid: 002c9503a5cf6804cbe0851b9b9513c4,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

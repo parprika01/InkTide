@@ -1,0 +1,221 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Hands
+  m_Mask: 00000000000000000000000000000000000000000100000001000000000000000000000000000000000000000000000000000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spawner_Root
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Elbow_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_Assist_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_A_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_A_1_L/Finger_A_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_A_1_L/Finger_A_2_L/Finger_A_3_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_B_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_B_1_L/Finger_B_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_B_1_L/Finger_B_2_L/Finger_B_3_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_C_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_C_1_L/Finger_C_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_C_1_L/Finger_C_2_L/Finger_C_3_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_D_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_D_1_L/Finger_D_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_D_1_L/Finger_D_2_L/Finger_D_3_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_E_1_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_E_1_L/Finger_E_2_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Finger_E_1_L/Finger_E_2_L/Finger_E_3_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_2_L/Wrist_L/Weapon_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_L/Arm_1_L/Arm_Assist_L
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Elbow_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_Assist_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_A_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_A_1_R/Finger_A_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_A_1_R/Finger_A_2_R/Finger_A_3_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_B_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_B_1_R/Finger_B_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_B_1_R/Finger_B_2_R/Finger_B_3_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_C_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_C_1_R/Finger_C_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_C_1_R/Finger_C_2_R/Finger_C_3_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_D_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_D_1_R/Finger_D_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_D_1_R/Finger_D_2_R/Finger_D_3_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_E_1_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_E_1_R/Finger_E_2_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Finger_E_1_R/Finger_E_2_R/Finger_E_3_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_2_R/Wrist_R/Weapon_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Clavicle_R/Arm_1_R/Arm_Assist_R
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Ear_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Ear_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Head_Cheek_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Head_Cheek_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Head_Eyeblow_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Head_Eyeblow_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Head_Intercostal
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Corner_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Corner_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Neck/Head/Mouth_Joe
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Spine_1/Spine_2/Spine_3/Tank_Root
+    m_Weight: 1
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_2_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_2_L/Ankle_Assist_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_2_L/Ankle_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_2_L/Ankle_L/Toe_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_2_L/Knee_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_L/Leg_Assist_L
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_2_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_2_R/Ankle_Assist_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_2_R/Ankle_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_2_R/Ankle_R/Toe_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_2_R/Knee_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root/Skl_Root/Waist/Leg_1_R/Leg_Assist_R
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model/Mouth00_Model
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model/Mouth01_Model
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model/Mouth02_Model
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model/Mouth03_Model
+    m_Weight: 0
+  - m_Path: Armature/nw4f_root/Root_Model/Mouth04_Model
+    m_Weight: 0
+  - m_Path: Body_Model__M_Body
+    m_Weight: 0
+  - m_Path: Body_Model__M_Face
+    m_Weight: 0
+  - m_Path: Body_Model__M_Inner
+    m_Weight: 0
+  - m_Path: Eye_Model__M_Eye
+    m_Weight: 0
+  - m_Path: Eyelids_Model__M_Eyelids
+    m_Weight: 0
+  - m_Path: Mouth00_Model__M_Face
+    m_Weight: 0
+  - m_Path: Mouth00_Model__M_TeamColor
+    m_Weight: 0
+  - m_Path: Mouth01_Model__M_Face
+    m_Weight: 0
+  - m_Path: Mouth01_Model__M_TeamColor
+    m_Weight: 0
+  - m_Path: Mouth02_Model__M_Face
+    m_Weight: 0
+  - m_Path: Mouth02_Model__M_TeamColor
+    m_Weight: 0
+  - m_Path: Mouth03_Model__M_Face
+    m_Weight: 0
+  - m_Path: Mouth03_Model__M_TeamColor
+    m_Weight: 0
+  - m_Path: Mouth04_Model__M_Face
+    m_Weight: 0
+  - m_Path: Mouth04_Model__M_TeamColor
+    m_Weight: 0
+  - m_Path: Tooth_Model__M_TeamColor
+    m_Weight: 0

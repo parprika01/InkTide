@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901dbcd37da13a04c8ac30acbe8430bd, type: 3}
+  m_Name: ResourceDictionary
+  m_EditorClassIdentifier: 
+  hairs:
+  - key: 00
+    value: {fileID: 919132149155446097, guid: 530a95576273de3459dd326e28856c71, type: 3}
+  - key: 01
+    value: {fileID: 919132149155446097, guid: b565c062ae5b4a948a6e08d27f5a6525, type: 3}
+  eyebrows:
+  - key: 00
+    value: {fileID: 8981030520557070253, guid: 62db6d463164ed045b928001911efc61, type: 3}
+  - key: 01
+    value: {fileID: 919132149155446097, guid: 75be0a6321bf22b48bb35ef160827dd9, type: 3}
+  bottoms:
+  - key: 00
+    value: {fileID: 919132149155446097, guid: e9543bba07c98d54780af1fbc1c91f03, type: 3}
+  - key: 01
+    value: {fileID: 919132149155446097, guid: 453cf54f12b883d41b9bb187f5758d22, type: 3}
+  clothes:
+  - key: 00
+    value: {fileID: 919132149155446097, guid: 65e85e8e7455f904e8a1e16c958a3cac, type: 3}
+  - key: 01
+    value: {fileID: 919132149155446097, guid: 8df7c074b1f72e844b1815ab0b8fe63f, type: 3}
+  heads:
+  - key: 00
+    value: {fileID: 919132149155446097, guid: cfc9dd9f01739184a9ed39010f6650d7, type: 3}
+  - key: 01
+    value: {fileID: 919132149155446097, guid: b28c762328558854e93277546910b7f5, type: 3}
+  shoes:
+  - key: 00
+    leftShoe: {fileID: 919132149155446097, guid: 3d3a90ffcde89ae489b5662276c6f7b6,
+      type: 3}
+    rightShoe: {fileID: 919132149155446097, guid: 24b0861f4cec1044aab8943b3088a2b4,
+      type: 3}

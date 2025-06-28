@@ -1,0 +1,56 @@
+// Each #kernel tells which function to compile; you can have many kernels
+// OcclusionFilter.compute
+
+#pragma kernel CSMain
+
+RWTexture2D<float4> _Result;     // 输出纹理
+Texture2D<float4> _Input;        // 输入的 world position 纹理
+
+[numthreads(8, 8, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    uint width, height;
+    _Input.GetDimensions(width, height);
+
+    if (id.x >= width || id.y >= height)
+        return;
+
+    float4 current = _Input[id.xy];
+    if (current.a == 0) // 忽略透明像素
+    {
+        _Result[id.xy] = float4(0, 0, 0, 0);
+        return;
+    }
+
+    float2 currentXZ = current.xz;
+    float currentY = current.y;
+    bool isTop = true;
+
+    // 检查周围像素是否有相同 xz 且 y 更高的
+    for (int dx = -1; dx <= 1; dx++)
+    {
+        for (int dy = -1; dy <= 1; dy++)
+        {
+            int2 neighborPos = int2(id.x + dx, id.y + dy);
+            if (neighborPos.x < 0 || neighborPos.y < 0 || neighborPos.x >= width || neighborPos.y >= height)
+                continue;
+
+            float4 neighbor = _Input[neighborPos];
+            if (neighbor.a == 0)
+                continue;
+
+            if (abs(neighbor.x - current.x) < 0.01 && abs(neighbor.z - current.z) < 0.01)
+            {
+                if (neighbor.y > currentY)
+                {
+                    isTop = false;
+                    break;
+                }
+            }
+        }
+        if (!isTop)
+            break;
+    }
+
+    _Result[id.xy] = isTop ? current : float4(0, 0, 0, 0);
+}
