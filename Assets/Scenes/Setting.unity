@@ -38,6 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10036,6 +10037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c637ff16493b934a9a241e32bded9d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loginEvent: {fileID: 0}
+  settingChangeEvent: {fileID: 0}
   hair: 00
   eyebrows: 00
   bottom: 00
@@ -10046,6 +10049,8 @@ MonoBehaviour:
   action: 00
   color: 00
   colorIndex: 00
+  playerName: 
+  nameBackground: 
 --- !u!4 &1458632934
 Transform:
   m_ObjectHideFlags: 0
@@ -14902,6 +14907,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player00_setting
       objectReference: {fileID: 0}
+    - target: {fileID: 6675522868475546263, guid: eb2e8670f8a433f48b09db1dfd192a93,
+        type: 3}
+      propertyPath: EquipLoadDoneEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: 61416e329f76f7c4385ba3ff554d84df,
+        type: 2}
     - target: {fileID: 8366700651066459702, guid: eb2e8670f8a433f48b09db1dfd192a93,
         type: 3}
       propertyPath: m_TagString

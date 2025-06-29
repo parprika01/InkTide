@@ -11,7 +11,11 @@ public enum SettingType
     Hair,
     Eyebrows,
     Bottom,
-    VictoryAction
+    VictoryAction,
+    PlayerName,
+    NameBackground,
+    Color,
+    ColorIndex
 }
 
 [CreateAssetMenu(menuName = "Events/EventChannels/SettingChange")]
