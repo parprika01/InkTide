@@ -7,12 +7,11 @@ public class SettingSceneController : MonoBehaviour
 {
     [Header("event")]
     [SerializeField] private EventChannel InitializeEvent;
-<<<<<<< Updated upstream
-=======
+
     [Header("Button")]
     public Button returnbtn;
     public Button ootdbtn;
->>>>>>> Stashed changes
+
 
     void Start()
     {
