@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BottomCellTab : MonoBehaviour
+using UnityEngine.EventSystems;
+using DG.Tweening;
+public class BottomCellTab : MonoBehaviour, IPointerClickHandler
 {
     // Start is called before the first frame update
     private Vector2 OriginPos;//原始坐标信息

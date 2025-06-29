@@ -39,10 +39,11 @@ public class BottomCellGroup : MonoBehaviour
         lastSelectedBtn = btn;
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void is_Selected(BottomCellGroup btn){
+        if(lastSelectedBtn == btn){
+            return false;
+        }else{
+            return true;
+        }
     }
 }
