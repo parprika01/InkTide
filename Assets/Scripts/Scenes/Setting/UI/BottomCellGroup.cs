@@ -39,7 +39,7 @@ public class BottomCellGroup : MonoBehaviour
         lastSelectedBtn = btn;
 
     }
-    private void is_Selected(BottomCellGroup btn){
+    private bool is_Selected(BottomCellTab btn){
         if(lastSelectedBtn == btn){
             return false;
         }else{
