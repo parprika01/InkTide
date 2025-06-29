@@ -17,6 +17,7 @@ public class InputEventPublisher : MonoBehaviour
     [SerializeField] private AsyncBoolEventChannel holdEvent;
     [SerializeField] private AsyncBoolEventChannel squidEvent;
     [SerializeField] private AsyncBoolEventChannel specialEvent;
+    [SerializeField] private BoolEventChannel SyncHoldEvent;
     #endregion
     private PlayerInput playerInput;
     private Vector2 _currentMoveInput;
@@ -40,7 +41,9 @@ public class InputEventPublisher : MonoBehaviour
         playerInput.player.come_on.started += _ => TriggerSignalRaise(InputType.ComeOn, comeOnEvent);
 
         playerInput.player.sub_weapon.started += _ => BoolSignalRaise(InputType.Hold, holdEvent, true);
-        playerInput.player.sub_weapon.canceled += _ => BoolSignalRaise(InputType.Hold, holdEvent, false);      
+        playerInput.player.sub_weapon.canceled += _ => BoolSignalRaise(InputType.Hold, holdEvent, false);
+        playerInput.player.sub_weapon.started += _ => SyncHoldEvent.Raise(true);
+        playerInput.player.sub_weapon.canceled += _ => SyncHoldEvent.Raise(false);     
 
         playerInput.player.jump.started += _ => jumpEvent.Raise();
 

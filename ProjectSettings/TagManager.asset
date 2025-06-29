@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Root
+  - shtr
+  - slsh
+  - chrg
+  - rllr
+  - splt
   layers:
   - Default
   - TransparentFX
