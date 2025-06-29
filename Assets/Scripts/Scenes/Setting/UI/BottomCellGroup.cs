@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class BottomCellGroup : MonoBehaviour
 {
-<<<<<<< Updated upstream
-    // Start is called before the first frame update
-    void Start()
-    {
-=======
     // [Header("底部点击单元集合")] BottomCellTab[] BtnCellList;
     private BottomCellTab lastSelectedBtn = null;
     public CanvasController canvasController;
@@ -37,7 +32,6 @@ public class BottomCellGroup : MonoBehaviour
         //btn的move事件
         btn.UpMoveEvent();
         //Canvas事件
->>>>>>> Stashed changes
         
         ContentCanvas cur = canvasController.GetCanvasByName(btn.canvasname);
         canvasController.SwitchToHandlerEvent(last, cur);

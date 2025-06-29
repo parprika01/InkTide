@@ -5,11 +5,6 @@ using UnityEngine;
 public class BottomCellTab : MonoBehaviour
 {
     // Start is called before the first frame update
-<<<<<<< Updated upstream
-    void Start()
-    {
-        
-=======
     private Vector2 OriginPos;//原始坐标信息
     private RectTransform rectTransform;
     [Header("弹出高度")][SerializeField] private float moveDistance = 0.2f;
@@ -43,7 +38,6 @@ public class BottomCellTab : MonoBehaviour
     public void DownMoveEvent()
     {
         rectTransform.DOAnchorPos(OriginPos, duration).SetEase(Ease.InOutQuad);
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
