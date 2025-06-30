@@ -4,16 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - highlight
-=======
   - Root
   - shtr
   - slsh
   - chrg
   - rllr
   - splt
->>>>>>> 1437f71ac24c5c166d65d9d75c5616d696840898
   layers:
   - Default
   - TransparentFX
