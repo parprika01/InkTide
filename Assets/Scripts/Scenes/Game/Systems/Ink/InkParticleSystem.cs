@@ -6,13 +6,16 @@ public class InkParticleSystem : MonoBehaviour
 {
     [Header("event")]
     [SerializeField] private BoolEventChannel fireEvent;
-    private ParticleSystem particleSystem;
+    private ParticleSystem []particleSystem;
 
     void Awake()
     {
-        particleSystem = GetComponent<ParticleSystem>();
-        var em = particleSystem.emission;
-        em.enabled = false;        
+        particleSystem = GetComponentsInChildren<ParticleSystem>();
+        foreach (var par in particleSystem)
+        {
+            var em = par.emission;
+            em.enabled = false;
+        }      
     }
 
     void OnEnable()
@@ -27,7 +30,10 @@ public class InkParticleSystem : MonoBehaviour
     
     void HandleFireEvent(bool value)
     {
-        var em = particleSystem.emission;
-        em.enabled = value;
+        foreach (var par in particleSystem)
+        {
+            var em = par.emission;
+            em.enabled = value;
+        }
     }
 }
