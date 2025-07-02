@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - highlight
   - Root
   - shtr
   - slsh
