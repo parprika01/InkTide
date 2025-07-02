@@ -89,7 +89,7 @@ public class CurlingSubWeaponSystem : MonoBehaviour
             Debug.Log("爆炸后的isThrow: " + isThrow);
         }
     }
-    private async Task Throw()
+    private void Throw()
     {
         Debug.Log("在手上的时间: " + holdTime);
         transform.gameObject.AddComponent<Rigidbody>();
