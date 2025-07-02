@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Wide
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 0
+  - m_Path: Armature/Root
+    m_Weight: 0
+  - m_Path: Armature/Root/Open
+    m_Weight: 0
+  - m_Path: Armature/Root/Open/Scale
+    m_Weight: 1
+  - m_Path: Armature/Root/Rorate
+    m_Weight: 0
+  - m_Path: Armature/Root/Widea
+    m_Weight: 1
+  - m_Path: Armature/Root/Wideb
+    m_Weight: 1
+  - m_Path: Armature/Root/Widec
+    m_Weight: 1
+  - m_Path: Armature/Root/Wided
+    m_Weight: 1
+  - m_Path: Armature/Root/Widee
+    m_Weight: 1
+  - m_Path: Wsb_Bomb_Curling__M_Body
+    m_Weight: 0

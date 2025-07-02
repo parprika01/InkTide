@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1344379054780537903}
   - component: {fileID: 5699227598269159743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wsb_Bomb_Throw__M_Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6088479822125375944}
   - component: {fileID: 1342516683551430558}
   - component: {fileID: 8830305307875643800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: throw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,8 +136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7dd626882de7ce47950a12935baeeed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  throwSpeed: 5
-  spinSpeed: 2
+  throwSpeed: 10
+  spinSpeed: 0.2
   explosionDelay: 1
   syncHoldEvent: {fileID: 11400000, guid: 2e8aafa68e1256843a867483759e4576, type: 2}
 --- !u!65 &8830305307875643800
@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069016089188038039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5802299922566329415}
   - component: {fileID: 3728075021200759799}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wsb_Bomb_Throw__M_VinylOut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8791382647884592733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -320,7 +320,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3198219009957761969}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,6 +351,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6088479822125375944}
     m_Modifications:
+    - target: {fileID: 2858819000974682082, guid: 56b80095906dd31429c0d7ed89fd0f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3260140005339598576, guid: 56b80095906dd31429c0d7ed89fd0f20,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -401,10 +406,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3424859146238391224, guid: 56b80095906dd31429c0d7ed89fd0f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7059468879864279795, guid: 56b80095906dd31429c0d7ed89fd0f20,
         type: 3}
       propertyPath: m_Name
       value: throw_Main Visual Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059468879864279795, guid: 56b80095906dd31429c0d7ed89fd0f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955279897967153915, guid: 56b80095906dd31429c0d7ed89fd0f20,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
