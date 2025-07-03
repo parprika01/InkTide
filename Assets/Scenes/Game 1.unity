@@ -290,7 +290,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 957e7b7c46e20214ebca08f95af2a1fe,
         type: 3}
       propertyPath: m_TagString
-      value: shtr
+      value: rllr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1042,6 +1042,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SyncFireEvent: {fileID: 11400000, guid: 148da9529e7ac2948aa9fd26374290ed, type: 2}
+  SyncFireTriggerEvent: {fileID: 11400000, guid: 123a02262a14d094aafa9697a7aec2dd,
+    type: 2}
   jumpEvent: {fileID: 11400000, guid: 18016f99b42213a428421f9dd0c18f1f, type: 2}
   moveEvent: {fileID: 11400000, guid: 4f75b5ea50e9bac4a86e2f6d08adc7c7, type: 2}
   fireEvent: {fileID: 11400000, guid: 3d7cbf424ba164040add421660874b59, type: 2}
@@ -2372,7 +2374,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 7cd00cdbd5eecf04f8ed3edfe104e2f5, type: 2}
+      objectReference: {fileID: 9100000, guid: e8392a61d1d89d84c93d44191f1c3c6e, type: 2}
     - target: {fileID: 2700914227270934698, guid: 8d915250da6c1b441a56726f4ecd61cf,
         type: 3}
       propertyPath: m_Name

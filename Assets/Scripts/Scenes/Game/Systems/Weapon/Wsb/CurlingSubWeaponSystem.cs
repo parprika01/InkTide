@@ -74,6 +74,9 @@ public class CurlingSubWeaponSystem : MonoBehaviour
         if (isThrow == false && hasExplosion == false)
         {
             hasExplosion = true;
+            var em = explosion[4].emission;
+            em.enabled = true;
+            explosion[4].Play();
             int delayTime;
             if (isCharge)
             {

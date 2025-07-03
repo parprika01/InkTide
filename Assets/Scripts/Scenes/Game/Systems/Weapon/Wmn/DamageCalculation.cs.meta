@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 1b14e1a4f15334a468bab1138d6d53b3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - fireEvent: {fileID: 11400000, guid: 148da9529e7ac2948aa9fd26374290ed, type: 2}
+  - groundEvent: {fileID: 11400000, guid: 1178abb3252399e48b43f122eb98d038, type: 2}
+  - fireTriggerEvent: {fileID: 11400000, guid: 123a02262a14d094aafa9697a7aec2dd, type: 2}
+  - shooter: {fileID: 11400000, guid: 7ed0f37dd633a7d4e973598f871ba543, type: 2}
+  - slosher: {fileID: 11400000, guid: 0b36524aff526094cbe8cac5afba44e2, type: 2}
+  - roller: {fileID: 11400000, guid: d1cf044f40f49fc4a82cd5654bd89224, type: 2}
+  - charger: {fileID: 11400000, guid: 682a4149e2aa52842b9c3bd95deaa23d, type: 2}
+  - splatling: {fileID: 11400000, guid: 8d74f1668b6647144a405c015744f9f7, type: 2}
+  - thrower: {fileID: 11400000, guid: bb2c5adc100530e4db5ace5295680416, type: 2}
+  - burst: {fileID: 11400000, guid: 728e853d17321bb4fadd11e61f275725, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
