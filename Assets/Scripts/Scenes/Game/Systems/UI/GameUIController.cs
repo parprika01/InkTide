@@ -21,6 +21,8 @@ public class GameUIController : MonoBehaviour
     private Image enemy_died_icon;
 
     private bool is_gamed = false;//true代表游戏结束
+    [Header("other")]
+    public RemainController rc;//墨水余量相关UI控制对象
 
     private
 
@@ -32,6 +34,7 @@ public class GameUIController : MonoBehaviour
         StartCoroutine(countdownUI.StartCountdown());
         // timer.StartTimer();
         //对局中信息加载
+
     }
     public void SetInfo()
     {
@@ -49,6 +52,13 @@ public class GameUIController : MonoBehaviour
         {
 
         }
+    }
+    //计算当前地图上的墨水占比
+    public void UpdateCurArea()
+    {
+        // TODO
+        // rc.SetCurAllNumber() //传入当前计算的Area值 int
+        // rc.SetRemainText(string number);//更新自己剩下的墨水；
     }
     //开启结算
     public void GameEnd()

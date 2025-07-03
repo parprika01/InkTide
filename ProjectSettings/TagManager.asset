@@ -13,6 +13,9 @@ TagManager:
   - splt
   - id
   - username
+  - Highlight_bg
+  - weaponicon
+  - dieicon
   layers:
   - Default
   - TransparentFX
