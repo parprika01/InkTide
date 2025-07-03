@@ -8,6 +8,7 @@ public class InputEventPublisher : MonoBehaviour
     #region 事件通道
     [Header("事件通道")]
     [SerializeField] private BoolEventChannel SyncFireEvent;
+    [SerializeField] private EventChannel SyncFireTriggerEvent;
     [SerializeField] private EventChannel jumpEvent;
     [SerializeField] private Vector2EventChannel moveEvent;
     [SerializeField] private AsyncBoolEventChannel fireEvent;
@@ -36,6 +37,8 @@ public class InputEventPublisher : MonoBehaviour
         playerInput.player.fire.started += _ => SyncFireEvent.Raise(true);
         playerInput.player.fire.canceled += _ => SyncFireEvent.Raise(false);
         //playerInput.player.fire.started += _ => TriggerSignalRaise(InputType.FireTrigger, fireTriggerEvent);
+
+        playerInput.player.fire.started += _ => SyncFireTriggerEvent.Raise();
 
         playerInput.player.nice.started += _ => TriggerSignalRaise(InputType.Nice, niceEvent);
         playerInput.player.come_on.started += _ => TriggerSignalRaise(InputType.ComeOn, comeOnEvent);

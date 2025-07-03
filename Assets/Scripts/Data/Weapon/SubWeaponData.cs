@@ -5,5 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SubWeaponData", menuName = "Data/SubWeapon", order = 0)]
 public class SubWeaponData : ScriptableObject
 {
-    public string Name;
+    [Header("Damage")]
+    public int DamagePerCollision;
 }
