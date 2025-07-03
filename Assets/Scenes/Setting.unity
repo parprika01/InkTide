@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -702,6 +701,7 @@ GameObject:
   - component: {fileID: 56425992}
   - component: {fileID: 56425991}
   - component: {fileID: 56425990}
+  - component: {fileID: 56425993}
   m_Layer: 5
   m_Name: ReturnBtn
   m_TagString: Untagged
@@ -812,6 +812,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56425988}
   m_CullTransparentMesh: 1
+--- !u!114 &56425993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56425988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0276f17fa74d57e489975be908245ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ret_btn: {fileID: 56425990}
 --- !u!1 &69828789
 GameObject:
   m_ObjectHideFlags: 0
@@ -9727,6 +9740,9 @@ MonoBehaviour:
   - Setting
   - Game
   - Home
+  userId: 
+  userpwd: 
+  transitionCanvasPrefab: {fileID: 0}
 --- !u!4 &1414838744
 Transform:
   m_ObjectHideFlags: 0
@@ -10032,7 +10048,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1458632932}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c637ff16493b934a9a241e32bded9d6, type: 3}
   m_Name: 

@@ -72,12 +72,15 @@ public class SceneDirector : MonoBehaviour
         {
             transitionCanvas.SetActive(true);
             Animator animator = transitionCanvas.GetComponent<Animator>();
-            animator.SetTrigger("FadeIn");
+
+            // 播放淡出动画
+            animator.SetBool("FadeIn", true);
+            animator.SetBool("FadeOut", false);
+
             yield return new WaitForSeconds(1f);
         }
 
         SceneHandle oldScene = SceneManager.GetActiveScene();
-
 
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         yield return asyncLoad;
@@ -95,13 +98,14 @@ public class SceneDirector : MonoBehaviour
 
         if (transitionCanvas != null)
         {
-            yield return null; // 等待一帧确保 UI 激活完成
             Animator animator = transitionCanvas.GetComponent<Animator>();
 
-            animator.SetTrigger("FadeOut");    // 再触发淡入
+            // 播放淡出动画
+            animator.SetBool("FadeIn", false);
+            animator.SetBool("FadeOut", true);
         }
-
     }
+
 
     /// <summary>
     /// 卸载之前的场景（可选）

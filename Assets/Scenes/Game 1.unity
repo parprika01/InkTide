@@ -908,6 +908,9 @@ MonoBehaviour:
   - Game
   - Home
   - Setting
+  userId: 
+  userpwd: 
+  transitionCanvasPrefab: {fileID: 0}
 --- !u!4 &1016747790
 Transform:
   m_ObjectHideFlags: 0
@@ -972,7 +975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455551136}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1c637ff16493b934a9a241e32bded9d6, type: 3}
   m_Name: 

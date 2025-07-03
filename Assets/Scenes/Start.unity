@@ -3085,6 +3085,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelLoader
       objectReference: {fileID: 0}
+    - target: {fileID: 3992955505812884613, guid: d64aa12da48702b45b02a4b9124990d4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5605064668087210822, guid: d64aa12da48702b45b02a4b9124990d4,
         type: 3}
       propertyPath: Loginbtn
