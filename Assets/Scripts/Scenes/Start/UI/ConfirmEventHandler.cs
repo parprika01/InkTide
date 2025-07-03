@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using DG.Tweening;
 public class ConfirmEventHandler : MonoBehaviour
 {
     public  Button loginbtn;
@@ -15,6 +15,7 @@ public class ConfirmEventHandler : MonoBehaviour
     public TMP_InputField r_id_inputField;
     public TMP_InputField l_pwd_inputField;
     public TMP_InputField r_pwd_inputField;
+    public HomeLoader HL;
 
     void Start()
     {
@@ -34,9 +35,12 @@ public class ConfirmEventHandler : MonoBehaviour
         //获取当前输入框的内容
         string id = l_id_inputField.text;
         string pwd = l_pwd_inputField.text;
-        
+
         //数据库操作
 
+        DOTween.Kill(this.gameObject);
+        HL.LoadHomeScene(id,pwd);
+        
     }
 
     private void RegisterEventHandler()

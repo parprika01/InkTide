@@ -11,6 +11,8 @@ TagManager:
   - chrg
   - rllr
   - splt
+  - id
+  - username
   layers:
   - Default
   - TransparentFX
