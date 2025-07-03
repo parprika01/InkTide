@@ -38,10 +38,20 @@ PrefabInstance:
       propertyPath: ShapeModule.radius.value
       value: 0.05
       objectReference: {fileID: 0}
+    - target: {fileID: 3351261615275784705, guid: 29f125434bde53c4b9e1126eeb7f0748,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4174017345898553605, guid: 29f125434bde53c4b9e1126eeb7f0748,
         type: 3}
       propertyPath: m_Name
       value: burst_Main Visual Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174017345898553605, guid: 29f125434bde53c4b9e1126eeb7f0748,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4226827730366909547, guid: 29f125434bde53c4b9e1126eeb7f0748,
         type: 3}
@@ -52,6 +62,16 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4398894956826068326, guid: 29f125434bde53c4b9e1126eeb7f0748,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5499431086635254811, guid: 29f125434bde53c4b9e1126eeb7f0748,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6058372124940215232, guid: 29f125434bde53c4b9e1126eeb7f0748,
         type: 3}
@@ -187,10 +207,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4114533636720156945, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 741808593568725213, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 72c21c719b8ef384db36a26becb247be,
         type: 3}
       propertyPath: m_Name
       value: burst
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3676967227229006540, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5586984630477082818, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6300358089222737809, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7036213049465896255, guid: 72c21c719b8ef384db36a26becb247be,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -259,8 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   throwSpeed: 15
-  spinSpeed: 2
-  explosionDelay: 1.5
+  spinSpeed: 0.2
   syncHoldEvent: {fileID: 11400000, guid: 2e8aafa68e1256843a867483759e4576, type: 2}
 --- !u!65 &7969431256233716462
 BoxCollider:

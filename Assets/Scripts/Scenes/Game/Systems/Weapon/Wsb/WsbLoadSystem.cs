@@ -36,7 +36,7 @@ public class WsbLoadSystem : MonoBehaviour
             Transform firstChild = weapon.GetChild(0);
             firstChildObject = firstChild.gameObject;
             Debug.Log("Tag: " + firstChildObject.tag);
-            if (firstChildObject.tag == "shtr" || firstChildObject.tag == "slsh" || firstChildObject.tag == "chrg")
+            if (firstChildObject.tag == "slsh" || firstChildObject.tag == "chrg")
             {
                 wsbPrefab = Resources.Load<GameObject>("Weapon/Sub/throw/throw");
                 // Debug.Log("object: ", wsbPrefab);
@@ -44,6 +44,10 @@ public class WsbLoadSystem : MonoBehaviour
             else if (firstChildObject.tag == "rllr")
             {
                 wsbPrefab = Resources.Load<GameObject>("Weapon/Sub/curling/curling");
+            }
+            else if (firstChildObject.tag == "shtr")
+            {
+                wsbPrefab = Resources.Load<GameObject>("Weapon/Sub/suction/suction");
             }
             else
             {

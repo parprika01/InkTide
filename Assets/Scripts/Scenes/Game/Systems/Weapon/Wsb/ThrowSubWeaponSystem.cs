@@ -8,13 +8,12 @@ using UnityEngine;
 public class ThrowSubWeaponSystem : MonoBehaviour
 {
     [Header("参数")]
-    [SerializeField] private float throwSpeed = 15f;
-    [SerializeField] private float spinSpeed = 2f;
-    [SerializeField] private float explosionDelay = 1.5f;
+    [SerializeField] private float throwSpeed = 10f;
+    [SerializeField] private float spinSpeed = 0.2f;
+    [SerializeField] private float explosionDelay = 1f;
     [Header("事件")]
     [SerializeField] private BoolEventChannel syncHoldEvent;
 
-    private GameObject gameObject;
     private Rigidbody rb;
     private bool isThrow;
     private bool hasExplosion;
@@ -24,7 +23,6 @@ public class ThrowSubWeaponSystem : MonoBehaviour
     private void Awake()
     {
         cam = Camera.main;
-        gameObject = transform.gameObject;
         explosion = GetComponentsInChildren<ParticleSystem>();
         hasExplosion = false;
     }
@@ -65,16 +63,16 @@ public class ThrowSubWeaponSystem : MonoBehaviour
 
     private void Throw()
     {
-        gameObject.AddComponent<Rigidbody>();
+        transform.gameObject.AddComponent<Rigidbody>();
         rb = GetComponent<Rigidbody>();
-        rb.mass = 0.1f;
+        rb.mass = 0.5f;
         Vector3 throwDirection = cam.transform.forward; // 获取投掷方向
         Debug.Log("投掷方向: " + throwDirection);
         transform.SetParent(null);
         rb.useGravity = true;
         rb.isKinematic = false;
-        rb.AddForce(throwDirection * throwSpeed, ForceMode.VelocityChange);
-        rb.AddTorque(throwDirection * spinSpeed, ForceMode.VelocityChange); // 旋转效果
+        rb.AddForce(throwDirection * throwSpeed, ForceMode.Impulse);
+        rb.AddTorque(throwDirection * spinSpeed, ForceMode.Impulse); // 旋转效果
     }
     // public bool IsStopped(Rigidbody rby, float velocityThreshold = 0.01f)
     // {
@@ -92,7 +90,7 @@ public class ThrowSubWeaponSystem : MonoBehaviour
             em.enabled = true;
             // par.Play();
         }
-        await UniTask.Delay(200);
-        Destroy(gameObject);
+        await UniTask.Delay(500);
+        Destroy(transform.gameObject);
     }
 }
