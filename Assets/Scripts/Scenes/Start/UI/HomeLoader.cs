@@ -15,6 +15,10 @@ public class HomeLoader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+    void LoadHomeScene()
+    {
         
     }
 }
