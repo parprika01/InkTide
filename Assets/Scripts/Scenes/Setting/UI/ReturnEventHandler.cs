@@ -11,7 +11,7 @@ public class ReturnEventHandler : MonoBehaviour
     }
     void ReturnHomeEvent()
     {
-        // SceneDirector.Instance.LoadScene("Home");
+        SceneDirector.Instance.LoadScene("Home");
     }
 
 }

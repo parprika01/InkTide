@@ -20,6 +20,6 @@ public class MatchSceneController : MonoBehaviour
     IEnumerator StartGameAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneDirector.Instance.LoadScene("Game"); // 替换为你的目标场景名
+        SceneDirector.Instance.LoadScene("GameRoom"); // 替换为你的目标场景名
     }
 }

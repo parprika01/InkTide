@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameUIController : MonoBehaviour
 {
     public CountdownUI countdownUI;
+    public GameEndUIControllrt gameendcontroller;
     public Timer timer;
     [Header("self info")]
     public string path = "Weapon/Main";
@@ -32,6 +33,7 @@ public class GameUIController : MonoBehaviour
         LoadGamingInfo();
         timer.PauseTimer();
         StartCoroutine(countdownUI.StartCountdown());
+        gameendcontroller.gameObject.SetActive(false);
         // timer.StartTimer();
         //对局中信息加载
 
